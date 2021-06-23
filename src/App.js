@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import MobileDetails from './components/MobileDetails';
+import MobileList from './components/MobileList';
+import Home from './screens/Home';
+
+import store from './store';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Router>
+        <div className="App">
+
+
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/?mobiles" component={MobileList} />
+            <Route exact path="/mobiles" component={MobileList} />
+            <Route exact path="/mobile/:mobileId" component={MobileDetails} />
+          </Switch>
+        </div>
+      </Router>
+    </Provider>
   );
 }
 

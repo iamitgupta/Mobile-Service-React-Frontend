@@ -1,0 +1,6 @@
+export const GET_MOBILES = "GET_MOBILES";
+export const GET_SUGGESTIONS = "GET_SUGGESTIONS";
+export const GET_MOBILE = "GET_MOBILE";
+export const CREATE_MOBILE = "CREATE_MOBILE";
+export const UPDATE_MOBILE = "UPDATE_MOBILE";
+export const DELETE_MOBILE = "DELETE_MOBILE";
