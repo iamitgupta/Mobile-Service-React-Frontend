@@ -18,7 +18,7 @@ const MobileList = (props) => {
 
 
   const filterdata = queryString.parse(props.location.search, { ignoreQueryPrefix: true });
-  const { search = "", brand = "" , upcoming="" , rearCamera=""} = filterdata;
+  const { search = "", brand = "" , upcoming="" , rearCamera="" , frontCamera="" , display=""} = filterdata;
 
 
   const [mobiles, setMobiles] = useState([]);
@@ -43,10 +43,12 @@ const MobileList = (props) => {
         brand,
         upcoming,
         rearCamera,
+        frontCamera,
+        display,
         page,
       }
     );
-  }, [search, brand,upcoming,rearCamera]);
+  }, [search, brand,upcoming,rearCamera,frontCamera,display]);
 
   useEffect(() => {
     // console.warn("data to filter : page=" + page);
@@ -56,6 +58,8 @@ const MobileList = (props) => {
         brand,
         upcoming,
         rearCamera,
+        frontCamera,
+        display,
         page,
       }
     );
@@ -67,11 +71,14 @@ const MobileList = (props) => {
       search,
       brand,
       upcoming,
+      rearCamera,
+      frontCamera,
+      display,
       page,
     }
   ) {
     try {
-      const query = `mobileservice?brand=${brand}&upcoming=${upcoming}&rearCamera=${rearCamera}&search=${search}&page=${page}`;
+      const query = `mobileservice?brand=${brand}&upcoming=${upcoming}&rearCamera=${rearCamera}&frontCamera=${frontCamera}&display=${display}&search=${search}&page=${page}`;
       console.warn("Query : " + query);
       const response = await api.get(query);
       if (response.data.length > 0) {

@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 
 
 
+
 export default function Filter() {
 
 
@@ -156,15 +157,15 @@ export default function Filter() {
 
 
 
-    //reaarCamera
+    //rearCamera
 
     const [rearCamera, setRearCamera] = useState({
-        five: false,
-        thirteen: false,
-        sixteen: false,
-        twenty: false,
-        fourtyeight: false,
-        sixtyfour: false,
+        fiveRC: false,
+        thirteenRC: false,
+        sixteenRC: false,
+        twentyRC: false,
+        fourtyeightRC: false,
+        sixtyfourRC: false,
 
     });
 
@@ -179,27 +180,27 @@ export default function Filter() {
 
     function searchQueryRearCamera() {
         let query = "";
-        if (five) {
+        if (fiveRC) {
             query = 5;
 
         }
-        if (thirteen) {
+        if (thirteenRC) {
             query = 13;
 
         }
-        if (sixteen) {
+        if (sixteenRC) {
             query = 16;
 
         }
-        if (twenty) {
+        if (twentyRC) {
             query = 20;
 
         }
-        if (fourtyeight) {
+        if (fourtyeightRC) {
             query = 48;
 
         }
-        if (sixtyfour) {
+        if (sixtyfourRC) {
             query = 64;
 
         }
@@ -217,21 +218,153 @@ export default function Filter() {
         }
     }
     const {
-        five,
-        thirteen,
-        sixteen,
-        twenty,
-        fourtyeight,
-        sixtyfour,
+        fiveRC,
+        thirteenRC,
+        sixteenRC,
+        twentyRC,
+        fourtyeightRC,
+        sixtyfourRC,
     } = rearCamera;
 
+//Front camera
 
+const [frontCamera, setFrontCamera] = useState({
+    fiveFC: false,
+    eightFC: false,
+    twelveFC: false,
+    sixteenFC: false,
+    twentyFC: false,
+
+});
+
+const frontCameraChange = (event) => {
+    setFrontCamera({ ...frontCamera, [event.target.name]: event.target.checked });
+};
+// const [expanded, setExpanded] = React.useState('panel1');
+// const handleChange = (panel) => (event, newExpanded) => {
+//     setExpanded(newExpanded ? panel : false);
+// };
+
+
+function searchQueryFrontCamera() {
+    let query = "";
+    if (frontCamera.fiveFC) {
+        query = 5;
+
+    }
+    if (frontCamera.eightFC) {
+        query = 8;
+
+    }
+    if (frontCamera.twelveFC) {
+        query = 12;
+
+    }
+    if (frontCamera.sixteenFC) {
+        query = 16;
+
+    }
+    if (frontCamera.twentyFC) {
+        query = 20;
+
+    }
+
+    if (query) {
+        //remove last ,
+
+
+        //add query parameters
+        params.append("frontCamera", query)
+    } else {
+        console.warn("Nothing selected");
+        //delete query parameters
+        params.delete("frontCamera")
+        history.push("mobiles");
+    }
+}
+
+const {
+    fiveFC,
+    eightFC,
+    twelveFC,
+    sixteenFC,
+    twentyFC,
+} = frontCamera;
+
+
+//Display amoled IPS
+const [display, setDisplay] = useState({
+    amoled: false,
+    ips: false
+});
+
+const displayChange = (event) => {
+    setDisplay({ ...display, [event.target.name]: event.target.checked });
+};
+// const [expanded, setExpanded] = React.useState('panel1');
+// const handleChange = (panel) => (event, newExpanded) => {
+//     setExpanded(newExpanded ? panel : false);
+// };
+
+
+
+// const history = useHistory();
+function searchQueryDisplay() {
+    let query = "";
+    if (amoled) {
+        query += "amoled";
+    }
+    if (ips) {
+        query += "ips";
+    }
+    // const params = new URLSearchParams();
+
+    //if nothing is selected or both are selected delete query from url
+    if (query) {
+
+        //if anyone selected
+
+        //add query parameters
+        params.append("display", query)
+
+        // history.push({ search: params.toString() })
+        //    history.push("mobiles?upcoming=" + query);
+
+
+        //if both are selected 
+        if (query == "amoledips") {
+            params.delete("display")
+            query = "";
+            history.push("mobiles");
+        }
+
+    } else {
+        console.warn("Nothing selected");
+        //delete query parameters
+        params.delete("display")
+        // history.push("mobiles")
+        history.push("mobiles");
+    }
+
+}
+const {
+    amoled,
+    ips
+} = display;
+
+
+
+
+
+//global value change handler
     useEffect(() => {
         console.log(brands);
         console.log(available);
         console.log(rearCamera);
+        console.log(frontCamera);
+        console.log(display);
         URLConroller();
-    }, [available, brands, rearCamera]);
+    }, [available, brands, rearCamera,frontCamera, display]);
 
     //filter url controller
     function URLConroller() {
@@ -239,6 +372,8 @@ export default function Filter() {
         searchQueryBrand();
         searchQueryAvailablility();
         searchQueryRearCamera();
+        searchQueryFrontCamera();
+        searchQueryDisplay();
         history.push({ search: params.toString() })
 
 
@@ -248,8 +383,10 @@ export default function Filter() {
     return (
         <>
             {getBrandUI()}
-            {getAvalabilityUI()}
+            {getFrontCameraUI()}
             {getRearCameraUI()}
+            {getDisplayUI()}
+            {getAvalabilityUI()}
         </>
 
     );
@@ -397,43 +534,147 @@ export default function Filter() {
 
 
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={five} checked={five} onChange={rearCameraChange} name="five" />
+                                    <input class="form-check-input" type="checkbox" value={fiveRC} checked={fiveRC} onChange={rearCameraChange} name="fiveRC" />
                                     <span class="form-check-label">
                                         5 MP & Above
                                     </span>
                                 </label>
+                                
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={thirteen} onChange={rearCameraChange} name="thirteen" />
+                                    <input class="form-check-input" type="checkbox" value="" checked={thirteenRC} onChange={rearCameraChange} name="thirteenRC" />
                                     <span class="form-check-label">
                                         13 MP & Above
                                     </span>
                                 </label>
 
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={sixteen} onChange={rearCameraChange} name="sixteen" />
+                                    <input class="form-check-input" type="checkbox" value="" checked={sixteenRC} onChange={rearCameraChange} name="sixteenRC" />
                                     <span class="form-check-label">
                                         16 MP & Above
                                     </span>
                                 </label>
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={twenty} onChange={rearCameraChange} name="twenty" />
+                                    <input class="form-check-input" type="checkbox" value="" checked={twentyRC} onChange={rearCameraChange} name="twentyRC" />
                                     <span class="form-check-label">
                                         20 MP & ABOVE
                                     </span>
                                 </label>
 
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={fourtyeight} onChange={rearCameraChange} name="fourtyeight" />
+                                    <input class="form-check-input" type="checkbox" value="" checked={fourtyeightRC} onChange={rearCameraChange} name="fourtyeightRC" />
                                     <span class="form-check-label">
                                         48 MP & ABOVE
                                     </span>
                                 </label>
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={sixtyfour} onChange={rearCameraChange} name="sixtyfour" />
+                                    <input class="form-check-input" type="checkbox" value="" checked={sixtyfourRC} onChange={rearCameraChange} name="sixtyfourRC" />
                                     <span class="form-check-label">
                                         64 MP & ABOVE
                                     </span>
                                 </label>
+
+                            </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                </Accordion>
+
+
+
+            </div>
+
+        );
+    }
+
+    function getFrontCameraUI() {
+        return (
+            <div>
+
+
+                <Accordion defaultActiveKey="0">
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                            Front Camera
+                        </Accordion.Toggle>
+
+                        <Accordion.Collapse eventKey="0">
+                            <Card.Body>
+
+
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value={fiveFC} checked={fiveFC} onChange={frontCameraChange} name="fiveFC" />
+                                    <span class="form-check-label">
+                                        5 MP & Above
+                                    </span>
+                                </label>
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value={eightFC} checked={eightFC} onChange={frontCameraChange} name="eightFC" />
+                                    <span class="form-check-label">
+                                        8 MP & Above
+                                    </span>
+                                </label>
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" checked={twelveFC} onChange={frontCameraChange} name="twelveFC" />
+                                    <span class="form-check-label">
+                                        12 MP & Above
+                                    </span>
+                                </label>
+
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" checked={sixteenFC} onChange={frontCameraChange} name="sixteenFC" />
+                                    <span class="form-check-label">
+                                        16 MP & Above
+                                    </span>
+                                </label>
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" checked={twentyFC} onChange={frontCameraChange} name="twentyFC" />
+                                    <span class="form-check-label">
+                                        20 MP & ABOVE
+                                    </span>
+                                </label>
+                               
+
+                            </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                </Accordion>
+
+
+
+            </div>
+
+        );
+    }
+
+
+    function getDisplayUI() {
+        return (
+            <div>
+
+
+                <Accordion defaultActiveKey="0">
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                            Display
+                        </Accordion.Toggle>
+
+                        <Accordion.Collapse eventKey="0">
+                            <Card.Body>
+
+
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value={amoled} checked={amoled} onChange={displayChange} name="amoled" />
+                                    <span class="form-check-label">
+                                        Amoled
+                                    </span>
+                                </label>
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value={ips} checked={ips} onChange={displayChange} name="ips" />
+                                    <span class="form-check-label">
+                                        IPS
+                                    </span>
+                                </label>
+
+
 
                             </Card.Body>
                         </Accordion.Collapse>
