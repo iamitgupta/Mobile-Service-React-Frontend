@@ -17,7 +17,6 @@ function App() {
 
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/?mobiles" component={MobileList} />
             <Route exact path="/mobiles" component={MobileList} />
             <Route exact path="/mobile/:mobileId" component={MobileDetails} />
           </Switch>
