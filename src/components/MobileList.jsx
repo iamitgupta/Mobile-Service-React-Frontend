@@ -18,7 +18,9 @@ const MobileList = (props) => {
 
 
   const filterdata = queryString.parse(props.location.search, { ignoreQueryPrefix: true });
-  const { search = "", brand = "" , upcoming="" , rearCamera="" , frontCamera="" , display="", screenSize=""} = filterdata;
+  const { search = "", brand = "" , upcoming="" , rearCamera="" , frontCamera="" , display="", screenSize="",ram="", os="",
+          inbuiltMemory="", battery="", cpu=""
+    } = filterdata;
 
 
   const [mobiles, setMobiles] = useState([]);
@@ -46,10 +48,15 @@ const MobileList = (props) => {
         frontCamera,
         display,
         screenSize,
+        ram,
+        os,
+        inbuiltMemory,
+        battery,
+        cpu,
         page,
       }
     );
-  }, [search, brand,upcoming,rearCamera,frontCamera,display,screenSize]);
+  }, [search, brand,upcoming,rearCamera,frontCamera,display,screenSize, ram, os, inbuiltMemory, battery, cpu]);
 
   useEffect(() => {
     // console.warn("data to filter : page=" + page);
@@ -62,6 +69,11 @@ const MobileList = (props) => {
         frontCamera,
         display,
         screenSize,
+        ram,
+        os,
+        inbuiltMemory,
+        battery,
+        cpu,
         page,
       }
     );
@@ -77,11 +89,16 @@ const MobileList = (props) => {
       frontCamera,
       display,
       screenSize,
+      ram,
+      os,
+      inbuiltMemory,
+      battery,
+      cpu,
       page,
     }
   ) {
     try {
-      const query = `mobileservice?brand=${brand}&upcoming=${upcoming}&rearCamera=${rearCamera}&frontCamera=${frontCamera}&display=${display}&screenSize=${screenSize}&search=${search}&page=${page}`;
+      const query = `mobileservice?brand=${brand}&upcoming=${upcoming}&rearCamera=${rearCamera}&frontCamera=${frontCamera}&display=${display}&screenSize=${screenSize}&ram=${ram}&os=${os}&inbuiltMemory=${inbuiltMemory}&battery=${battery}&cpu=${cpu}&search=${search}&page=${page}`;
       console.warn("Query : " + query);
       const response = await api.get(query);
       if (response.data.length > 0) {
