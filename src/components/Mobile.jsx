@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';

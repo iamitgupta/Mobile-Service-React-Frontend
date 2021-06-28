@@ -7,6 +7,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import api from '../services/api';
 import { Spinner } from 'react-bootstrap';
 import Header from './Header';
+import SortBy from './SortBy';
 
 
 
@@ -19,7 +20,7 @@ const MobileList = (props) => {
 
   const filterdata = queryString.parse(props.location.search, { ignoreQueryPrefix: true });
   const { search = "", brand = "" , upcoming="" , rearCamera="" , frontCamera="" , display="", screenSize="",ram="", os="",
-          inbuiltMemory="", battery="", cpu=""
+          inbuiltMemory="", battery="", cpu="", priceLow="", priceHigh="", sort=""
     } = filterdata;
 
 
@@ -53,10 +54,13 @@ const MobileList = (props) => {
         inbuiltMemory,
         battery,
         cpu,
+        priceLow,
+        priceHigh,
+        sort,
         page,
       }
     );
-  }, [search, brand,upcoming,rearCamera,frontCamera,display,screenSize, ram, os, inbuiltMemory, battery, cpu]);
+  }, [search, brand,upcoming,rearCamera,frontCamera,display,screenSize, ram, os, inbuiltMemory, battery, cpu, priceLow, priceHigh,sort]);
 
   useEffect(() => {
     // console.warn("data to filter : page=" + page);
@@ -74,6 +78,9 @@ const MobileList = (props) => {
         inbuiltMemory,
         battery,
         cpu,
+        priceLow,
+        priceHigh,
+        sort,
         page,
       }
     );
@@ -94,11 +101,13 @@ const MobileList = (props) => {
       inbuiltMemory,
       battery,
       cpu,
+      priceLow,
+      priceHigh,
       page,
     }
   ) {
     try {
-      const query = `mobileservice?brand=${brand}&upcoming=${upcoming}&rearCamera=${rearCamera}&frontCamera=${frontCamera}&display=${display}&screenSize=${screenSize}&ram=${ram}&os=${os}&inbuiltMemory=${inbuiltMemory}&battery=${battery}&cpu=${cpu}&search=${search}&page=${page}`;
+      const query = `mobileservice?brand=${brand}&upcoming=${upcoming}&rearCamera=${rearCamera}&frontCamera=${frontCamera}&display=${display}&screenSize=${screenSize}&ram=${ram}&os=${os}&inbuiltMemory=${inbuiltMemory}&battery=${battery}&cpu=${cpu}&priceLow=${priceLow}&priceHigh=${priceHigh}&search=${search}&sort=${sort}&page=${page}`;
       console.warn("Query : " + query);
       const response = await api.get(query);
       if (response.data.length > 0) {
@@ -141,14 +150,19 @@ const MobileList = (props) => {
   // console.warn("Rendering....");
   // console.warn(mobiles);
   // console.warn("More data: " + hasMoreData);
+
+
+const [sortML,setSortML] = useState("");
+
   return (
 
     <>
       <Header />
       <div class="container-fluid my-5 py-5" >
+      <SortBy setSortML={setSortML} ></SortBy>
         <div class="row my-4 ">
           <div class="col-lg-3">
-            <Filter brand={brand} />
+            <Filter sort={sortML} />
           </div>
           <div class="col-lg-9">
             <div class="container">
