@@ -105,6 +105,7 @@ export const deleteMobile = (id) => async (dispatch) => {
 
  // get SUGGESTIONS
  export const getSuggestions = (title) => async (dispatch) => {
+  // const result = await axios.get(`https://mobileslove-backend-spring.herokuapp.com/suggestion?title=${title}`);
   const result = await axios.get(`http://localhost:8080/suggestion?title=${title}`);
   console.warn("within action: GET_SUGGESTIONS"+title)
   dispatch({

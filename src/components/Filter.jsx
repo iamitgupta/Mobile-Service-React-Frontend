@@ -7,6 +7,9 @@ import { useHistory } from 'react-router';
 
 export default function Filter() {
 
+    const history = useHistory();
+    const params = new URLSearchParams();
+
 
     //brands 
 
@@ -29,8 +32,7 @@ export default function Filter() {
     //     setExpanded(newExpanded ? panel : false);
     // };
 
-    const history = useHistory();
-    const params = new URLSearchParams();
+    
 
     function searchQueryBrand() {
         let query = "";
@@ -95,6 +97,9 @@ export default function Filter() {
         poco,
         apple,
     } = brands;
+
+
+
     //availability
     const [available, setAvailable] = useState({
         upcoming: false,
@@ -356,15 +361,90 @@ const {
 
 
 
-//global value change handler
+
+
+
+
+
+    //Screen Size 
+
+    const [screenSize, setScreenSize] = useState({
+        fourBelowSC: false,
+        fourToFiveSC: false,
+        fiveToSixSC: false,
+        sixAbove: false,
+    });
+
+    const screenSizeChange = (event) => {
+        setScreenSize({ ...screenSize, [event.target.name]: event.target.checked });
+    };
+    // const [expanded, setExpanded] = React.useState('panel1');
+    // const handleChange = (panel) => (event, newExpanded) => {
+    //     setExpanded(newExpanded ? panel : false);
+    // };
+
+    
+
+    function searchQueryScreenSize() {
+        let query = "";
+        if (screenSize.fourBelowSC) {
+            query += "4 inch Below,";
+
+        }
+
+        if (screenSize.fourToFiveSC) {
+            query += "4 inch - 5 inch,";
+
+        }
+
+        if (screenSize.fiveToSixSC) {
+            query += "5 inch - 6 inch,";
+
+        }
+
+        if (screenSize.sixAboveSC) {
+            query += "6 inch Above,";
+
+        }
+       
+        //if nothing is selected delete query from url
+        if (query) {
+            //remove last ,
+            query = query.slice(0, -1);
+
+            //add query parameters
+            params.append("screenSize", query)
+            // history.push({ search: params.toString() })
+            // history.push("mobiles?brand=" + query);
+            // console.warn("Query=" + query);
+            // console.warn("Params = " + params.toString())
+        } else {
+            console.warn("Nothing selected");
+            //delete query parameters
+            params.delete("screenSize")
+            history.push("mobiles");
+        }
+    }
+    const {
+        fourBelowSC,
+        fourToFiveSC,
+        fiveToSixSC,
+        sixAboveSC,
+    } = screenSize;
+
+//.....................................................................................
+
+    //global value change handler
     useEffect(() => {
         console.log(brands);
         console.log(available);
         console.log(rearCamera);
         console.log(frontCamera);
+        console.log(screenSize);
         console.log(display);
         URLConroller();
-    }, [available, brands, rearCamera,frontCamera, display]);
+    }, [available, brands, rearCamera,frontCamera, display,screenSize]);
+
 
     //filter url controller
     function URLConroller() {
@@ -374,6 +454,7 @@ const {
         searchQueryRearCamera();
         searchQueryFrontCamera();
         searchQueryDisplay();
+        searchQueryScreenSize();
         history.push({ search: params.toString() })
 
 
@@ -386,6 +467,7 @@ const {
             {getFrontCameraUI()}
             {getRearCameraUI()}
             {getDisplayUI()}
+            {getScreenSizeUI()}
             {getAvalabilityUI()}
         </>
 
@@ -673,6 +755,66 @@ const {
                                         IPS
                                     </span>
                                 </label>
+
+
+
+                            </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                </Accordion>
+
+
+
+            </div>
+
+        );
+    }
+
+
+
+    function getScreenSizeUI() {
+        return (
+            <div>
+
+
+                <Accordion defaultActiveKey="0">
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                            Screen Size
+                        </Accordion.Toggle>
+
+                        <Accordion.Collapse eventKey="0">
+                            <Card.Body>
+
+
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value={fourBelowSC} checked={fourBelowSC} onChange={screenSizeChange} name="fourBelowSC" />
+                                    <span class="form-check-label">
+                                    4 inch & Below
+                                    </span>
+                                </label>
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" checked={fourToFiveSC} onChange={screenSizeChange} name="fourToFiveSC" />
+                                    <span class="form-check-label">
+                                    4 inch - 5 inch
+                                    </span>
+                                </label>
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" checked={fiveToSixSC} onChange={screenSizeChange} name="fiveToSixSC" />
+                                    <span class="form-check-label">
+                                    5 inch - 6 inch
+                                    </span>
+                                </label>
+
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" checked={sixAboveSC} onChange={screenSizeChange} name="sixAboveSC" />
+                                    <span class="form-check-label">
+                                    6 inch & Above
+                                    </span>
+                                </label>
+
+
+                                
 
 
 
