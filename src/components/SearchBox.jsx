@@ -60,7 +60,7 @@ const SearchBar = () => {
     <>
       <AutoComplete
         dataSource={suggestions}
-        style={{ width: "50vw" }}
+        style={{ width: "80vw" }}
         onSelect={change}
         onSearch={setTitle}
         placeholder="Search mobiles, brands, offers"
