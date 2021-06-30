@@ -239,10 +239,10 @@ const MobileList = (props) => {
 
             }
           </div>
-          <div class="col-lg-9">
-            <div class="container">
+          <div class="col-lg-9 ">
+            
 
-              <ul class="list-group shadow">
+              <ul class="list-group  ">
                 {mobiles &&
                   <InfiniteScroll
                     dataLength={mobiles.length} //This is important field to render the next data
@@ -264,7 +264,7 @@ const MobileList = (props) => {
 
 
               </ul>
-            </div>
+            
           </div>
         </div>
       </div>

@@ -38,8 +38,8 @@ export default function MobileDetails() {
             <Header />
             <div class="container my-4 py-4">
 
-                <ul class="list-group shadow my-4 py-4">
-                    <li class="list-group-item card my-4 py-4">
+                <ul class="list-group shadow ">
+                    <li class="list-group-item card">
 
                         <div class="container media align-items-lg-center flex-column flex-lg-row ">
                             <div class="row card-body">

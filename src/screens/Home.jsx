@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route } from 'react-router';
 import Header from '../components/Header';
 import MobileList from '../components/MobileList';
@@ -7,6 +7,10 @@ import UpcomingMobiles from '../components/UpcomingMobiles';
 
 
 const Home = () => {
+
+  useEffect(() => {
+    document.title = "MobilesLove"
+  }, [])
   return (
     <div className="container-fluid">
       <Header />
