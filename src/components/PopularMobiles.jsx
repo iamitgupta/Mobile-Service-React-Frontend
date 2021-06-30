@@ -51,7 +51,7 @@ const PopularMobiles = () => {
         <div className="m-4 p-4">
             <div class="container-fluid p-2 bg-info" style={{ height: "45px" }}>
                 <h5 class=" float-left text-light">Popular Mobiles</h5>
-                <button type="button" class="btn btn-outline-light float-right btn-sm">See More</button>
+                <button type="button" class="btn btn-outline-light float-end btn-sm">See More</button>
             </div>
            <span className="container-fluid">
                 <span className="row">
