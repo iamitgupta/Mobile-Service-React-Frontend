@@ -1,4 +1,3 @@
-import { Dropdown } from 'bootstrap';
 import React, { useEffect, useState } from 'react';
 import { Accordion, Card } from "react-bootstrap";
 import { useHistory } from 'react-router';
@@ -911,6 +910,7 @@ searchQuerySort();
 
     return (
         <>
+        
             {getPriceUI()}
             {getBrandUI()}
             {getFrontCameraUI()}
@@ -933,13 +933,23 @@ searchQuerySort();
     function getPriceUI() {
         return (
             <>
+
            
-             <Accordion.Toggle as={Card.Header} eventKey="0">
+           
+           <Accordion defaultActiveKey="0">
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
                             Price
+
+                            
                         </Accordion.Toggle>
-            <div class="d-flex flex-row mb-2 border">
-               
-                <div  class="col dropdown">
+
+                        <Accordion.Collapse eventKey="0">
+                            <Card.Body class="m-2">
+            <div class="d-flex flex-row">
+              
+                <div  class="col dropdown ">
+                    
                     <select class="btn btn-light" value={priceMin} onChange={priceMinChange}>
                         <option  name="priceMin"> Min</option>
                         <option  name="priceMin">3000</option>
@@ -960,6 +970,7 @@ searchQuerySort();
                         
                     </select>
                 </div>
+                
 
                 <div class="col dropdown">
                     <select class="btn btn-light" value={priceMax} onChange={priceMaxChange} >
@@ -984,6 +995,12 @@ searchQuerySort();
                 </div>
 
             </div>
+            </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                </Accordion>
+
+               
 
             </>
 
@@ -1082,7 +1099,7 @@ searchQuerySort();
             <div>
 
 
-                <Accordion defaultActiveKey="0">
+                <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
                             Availability
@@ -1125,7 +1142,7 @@ searchQuerySort();
             <div>
 
 
-                <Accordion defaultActiveKey="0">
+                <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
                             Rear Camera
@@ -1192,7 +1209,7 @@ searchQuerySort();
             <div>
 
 
-                <Accordion defaultActiveKey="0">
+                <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
                             Front Camera
@@ -1253,7 +1270,7 @@ searchQuerySort();
             <div>
 
 
-                <Accordion defaultActiveKey="0">
+                <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
                             Display
@@ -1297,7 +1314,7 @@ searchQuerySort();
             <div>
 
 
-                <Accordion defaultActiveKey="0">
+                <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
                             Screen Size
@@ -1357,7 +1374,7 @@ searchQuerySort();
             <div>
 
 
-                <Accordion defaultActiveKey="0">
+                <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
                             RAM
@@ -1419,7 +1436,7 @@ searchQuerySort();
             <div>
 
 
-                <Accordion defaultActiveKey="0">
+                <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
                             Operating System
@@ -1462,7 +1479,7 @@ searchQuerySort();
             <div>
 
 
-                <Accordion defaultActiveKey="0">
+                <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
                             Battery
@@ -1517,7 +1534,7 @@ searchQuerySort();
             <div>
 
 
-                <Accordion defaultActiveKey="0">
+                <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
                             Inbuilt Memory
@@ -1573,7 +1590,7 @@ searchQuerySort();
             <div>
 
 
-                <Accordion defaultActiveKey="0">
+                <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
                             CPU Manufacturer

@@ -14,7 +14,7 @@ export default function Mobile({ mobile }) {
            <div class="card">
   
   <div class="card-body">
-  <li class="list-group-item card">
+  <li class="list-group-item">
 
 <div class="container media align-items-lg-center flex-column flex-lg-row ">
   <div class="row card-body">

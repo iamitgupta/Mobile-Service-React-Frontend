@@ -15,7 +15,7 @@ export default function Header() {
         <nav class="navbar navbar-expand-lg  bg-primary">
           <div class="container-fluid">
             {/* <a class="navbar-brand" href="#">Navbar</a> */}
-             <Link to="/"> <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6rkSE7MofuBUacGQgRtWKSjH3srrZiwXEkg&usqp=CAU"} alt="LOGO" width={100} height={45}/></Link>
+             <Link to="/"><h6 class="text-light">Mobiles❤</h6></Link>
            
             <form class="d-flex w-75">
               <SearchBar class="form-control border border-right-0" />
