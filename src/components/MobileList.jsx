@@ -9,16 +9,6 @@ import { Spinner, Button, Modal, Navbar, Container } from 'react-bootstrap';
 import Header from './Header';
 import SortBy from './SortBy';
 import { FilterFilled } from '@ant-design/icons';
-import { Hidden } from '@material-ui/core';
-
-
-
-
-
-
-
-
-
 
 
 const MobileList = (props) => {
@@ -162,8 +152,7 @@ const MobileList = (props) => {
 
 
   const [sortML, setSortML] = useState("");
-
- 
+  
 
   return (
 
