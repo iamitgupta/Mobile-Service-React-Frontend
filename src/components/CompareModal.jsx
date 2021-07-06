@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import api from '../services/api';
+ const params = new URLSearchParams();
 
 
 export default function CompareModal({ compareML, mobileIdManager }) {
 
     const [mobiles, setMobiles] = useState([]);
+    const history = useHistory();
+    const params = new URLSearchParams();
+
+
+    const [compareNowBtn, setCompareNowBtn] = useState(false);
 
     useEffect(() => {
         let exists = false;
@@ -21,6 +27,12 @@ export default function CompareModal({ compareML, mobileIdManager }) {
                 getMobile(id);
             }
         });
+
+        if(mobiles.length>=2){
+            setCompareNowBtn(false);
+        }else{
+            setCompareNowBtn(true);
+        }
 
 
 
@@ -43,6 +55,8 @@ export default function CompareModal({ compareML, mobileIdManager }) {
                 getMobile(id);
             }
         });
+
+
 
 
 
@@ -90,6 +104,37 @@ export default function CompareModal({ compareML, mobileIdManager }) {
 
     }
 
+    function compareURLGenerator(){
+
+        let query = "";
+        let name = "";
+        if (mobiles.length>=2) {
+            
+            mobiles.forEach((mobile)=>{
+                query += `${mobile.mobileId},`;
+                name += `${mobile.title} VS `;
+            });
+
+        }
+        console.warn("Query compare " + query)
+        
+        //if nothing is selected delete query from url
+        if (query) {
+            //remove last ,
+            query = query.slice(0, -1);
+            name = name.slice(0, -4).replaceAll(" ", "-");
+            params.append("compareIds", query)
+            history.push("../compare?" + params.toString()+"&titles="+name);
+
+    
+        } else {
+            // console.warn("Nothing selected");
+            //delete query parameters
+            params.delete("compareIds")
+            history.push("mobiles");
+        }
+    }
+
     return (
         <>
 
@@ -133,7 +178,7 @@ export default function CompareModal({ compareML, mobileIdManager }) {
                                                 </div>
                                                 <p class="card-text">{mobile.title}</p>
 
-                                                <Link to={`/mobile/${mobile.mobileId}`} class=" font-weight-bold  text-primary mobile-title-list"><button type="button" class="btn btn-warning" data-bs-dismiss="modal">Details</button></Link>
+                                                <Link to={`/mobile/${mobile.mobileId}/${mobile.title}`} class=" font-weight-bold  text-primary mobile-title-list"><button type="button" class="btn btn-warning" data-bs-dismiss="modal">Details</button></Link>
                                                 <br />
                                                 <button type="button" class="btn btn-success my-2" onClick={() => mobileIdManager(mobile.mobileId)} >Remove</button>
                                                 <h3>{mobile.mobileId}</h3>
@@ -145,7 +190,7 @@ export default function CompareModal({ compareML, mobileIdManager }) {
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" >Compare Now</button>
+                            <button type="button" class="btn btn-primary" onClick={() => compareURLGenerator()} data-bs-dismiss="modal" disabled={compareNowBtn}>Compare Now</button>
                         </div>
                     </div>
                 </div>

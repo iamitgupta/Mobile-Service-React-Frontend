@@ -5,10 +5,12 @@ import Filter from './Filter';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import api from '../services/api';
-import { Row,Col, Spinner,Toast,Button} from 'react-bootstrap';
+import { Row, Col, Spinner, Toast, Button } from 'react-bootstrap';
 import SortBy from './SortBy';
 import { FilterFilled } from '@ant-design/icons';
-import Compare from '../components/Compare'
+
+import CompareModal from './CompareModal'
+
 
 
 const MobileList = (props) => {
@@ -155,65 +157,65 @@ const MobileList = (props) => {
 
   const [compareML, setCompareSortML] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
 
-  },[compareML]);
+  }, [compareML]);
 
   const [show, setShow] = useState(false);
   const [body, setBody] = useState("");
 
 
 
-  
 
 
 
-  function mobileIdManager(mobileId){
+
+  function mobileIdManager(mobileId) {
     var notAvail = true;
-    compareML.forEach((id)=>{
-        if(id==mobileId){
-          notAvail = false;
-            // alert("Mobile id : "+id+" already exists");
-            var index = compareML.indexOf(mobileId);
-            compareML.splice(index, 1)
-            setBody("Mobile id : "+mobileId+" removed from compare list")
-            setShow(true);
-        }
+    compareML.forEach((id) => {
+      if (id == mobileId) {
+        notAvail = false;
+        // alert("Mobile id : "+id+" already exists");
+        var index = compareML.indexOf(mobileId);
+        compareML.splice(index, 1)
+        setBody("Mobile id : " + mobileId + " removed from compare list")
+        setShow(true);
+      }
     })
-    if(notAvail && compareML.length<3){
-      setCompareSortML([...compareML,mobileId]);
-      setBody("Mobile id "+mobileId+" added in compare list")
+    if (notAvail && compareML.length < 3) {
+      setCompareSortML([...compareML, mobileId]);
+      setBody("Mobile id " + mobileId + " added in compare list")
       setShow(true);
-          
+
     }
-    if(compareML.length>2){
+    if (compareML.length > 2) {
       setBody("Add only 3 mobiles at a time")
       setShow(true);
     }
-    
-    
+
+
   }
 
 
 
 
-  
+
 
   return (
 
     <>
-      <Compare compareML={compareML} mobileIdManager={mobileIdManager} />
+      <CompareModal compareML={compareML}  mobileIdManager={mobileIdManager}></CompareModal>
 
 
-      
+
 
       <div class="container-fluid py-3" >
         <div class="row">
           <div class="col">
             {window.screen.width <= 1280 ?
               <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              Filter  <FilterFilled />
-            </button>
+                Filter  <FilterFilled />
+              </button>
               :
               <h1></h1>
 
@@ -224,47 +226,47 @@ const MobileList = (props) => {
           </div>
         </div>
 
-       
-       
-            <div style={{visibility: "hidden",width:"0px",height:"0px"}}>
-        <Filter sort={sortML} style={{visibility: "hidden"}}/>
+
+
+        <div style={{ visibility: "hidden", width: "0px", height: "0px" }}>
+          <Filter sort={sortML} style={{ visibility: "hidden" }} />
         </div>
 
 
 
-   
-
-   
-
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Filter</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <Filter sort={sortML} />
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Apply</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-       
-
-        
 
 
 
 
 
-       
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Filter</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <Filter sort={sortML} />
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Apply</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -280,31 +282,31 @@ const MobileList = (props) => {
             }
           </div>
           <div class="col-lg-9 ">
-            
-
-              <ul class="list-group  ">
-                {mobiles &&
-                  <InfiniteScroll
-                    dataLength={mobiles.length} //This is important field to render the next data
-                    next={fetchMoreData}
-                    hasMore={hasMoreData}
-                    loader={
-                      <div class="mx-auto" style={{ width: "200px" }}>
-                        <Spinner animation="border" variant="primary" />
-                      </div>
-
-                    }
-                  >
-                    {mobiles && mobiles.map((mob) => (
-                      <Mobile key={mobiles.mobileId} mobile={mob} mobileIdManager={mobileIdManager} />
-                    ))}
-
-                  </InfiniteScroll>
-                }
 
 
-              </ul>
-            
+            <ul class="list-group  ">
+              {mobiles &&
+                <InfiniteScroll
+                  dataLength={mobiles.length} //This is important field to render the next data
+                  next={fetchMoreData}
+                  hasMore={hasMoreData}
+                  loader={
+                    <div class="mx-auto" style={{ width: "200px" }}>
+                      <Spinner animation="border" variant="primary" />
+                    </div>
+
+                  }
+                >
+                  {mobiles && mobiles.map((mob) => (
+                    <Mobile key={mobiles.mobileId} mobile={mob} mobileIdManager={mobileIdManager} />
+                  ))}
+
+                </InfiniteScroll>
+              }
+
+
+            </ul>
+
           </div>
         </div>
       </div>
@@ -312,24 +314,24 @@ const MobileList = (props) => {
       {/* floating window */}
 
       <div class="fixed-bottom bottom-0 start-0">
-                <div class="position-fixed bottom-0 start-0 mb-2 ms-1" >
-                <Row>
-      <Col xs={6}>
-        <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
-          <Toast.Body>{body}</Toast.Body>
-        </Toast>
-      </Col>
-    </Row>
-                </div>
-            </div>
+        <div class="position-fixed bottom-0 start-0 mb-2 ms-1" >
+          <Row>
+            <Col xs={6}>
+              <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
+                <Toast.Body>{body}</Toast.Body>
+              </Toast>
+            </Col>
+          </Row>
+        </div>
+      </div>
 
-      
 
-     
 
-      
 
-     
+
+
+
+
     </>
 
   );

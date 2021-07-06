@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import CompareModal from './CompareModal';
 import api from '../services/api';
+import queryString from 'query-string';
 
-export default function Compare({compareML, mobileIdManager}) {
+export default function Compare(props) {
 
    //create url based
 
+   const filterdata = queryString.parse(props.location.search, { ignoreQueryPrefix: true });
+  const { compareIds = ""} = filterdata;
+
+
+
+  console.log("Compare Data from URL : ")
+  console.log(filterdata);
+
    const [mobiles, setMobiles] = useState([]);
+   const [mobileId, setMobileId] = useState([]);
 
    const [mobileOne, setMobileOne] = useState("");
    const [mobileTwo, setMobileTwo] = useState("");
@@ -15,28 +24,33 @@ export default function Compare({compareML, mobileIdManager}) {
 
 
    useEffect(() => {
+
+      setMobileId(compareIds.split(","));
+
+      console.warn("mobile ids to compare "+mobileId)
+
        setMobileOne("");
        setMobileTwo("");
        setMobileThree("");
   
-    if(compareML.length>0){
-        setMobileOne(compareML.[0]); 
+    if(mobileId.length>0){
+        setMobileOne(mobileId.[0]); 
     }
-    if(compareML.length>1){
-        setMobileTwo(compareML.[1]); 
+    if(mobileId.length>1){
+        setMobileTwo(mobileId.[1]); 
     }
-    if(compareML.length>2){
-        setMobileThree(compareML.[2]); 
+    if(mobileId.length>2){
+        setMobileThree(mobileId.[2]); 
     }
-    // getMobile(
-    //     {
-    //         mobileOne,
-    //         mobileTwo,
-    //         mobileThree
-    //       }
-    // );
+    getMobile(
+        {
+            mobileOne,
+            mobileTwo,
+            mobileThree
+          }
+    );
     
-  }, [compareML,mobileOne,mobileTwo,mobileThree]);
+  }, [compareIds.length,mobileId.length,mobileOne,mobileTwo,mobileThree]);
 
 
   async function getMobile(
@@ -68,7 +82,10 @@ export default function Compare({compareML, mobileIdManager}) {
 
     return (
         <>
-            <CompareModal compareML={compareML}  mobileIdManager={mobileIdManager}></CompareModal>
+            <h1>Compare page</h1>
+            {mobiles && mobiles.map((mob) => (
+                    <h1 class="text-primary">{mob.mobile.title} - Rank {mob.rank}</h1>
+                  ))}
 
         </>
 
