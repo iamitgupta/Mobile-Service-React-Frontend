@@ -6,15 +6,18 @@ import MobileList from './components/MobileList';
 import Home from './screens/Home';
 
 import store from './store';
+import Header from './components/Header';
+
 
 
 function App() {
   return (
+   
     <Provider store={store}>
+     
       <Router>
         <div className="App">
-
-
+        <Header />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/mobiles" component={MobileList} />

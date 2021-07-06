@@ -7,7 +7,7 @@ export default function MobileSmall(props) {
 
     return (
         <>
-        <span className="col">
+        <span className="col mobile-small ">
         <div class="card my-2 p-1 " style={{ width: "140px", height: "330px" }} >
             < div className="card-body">
                 <img class="card-img-top" src={mobile.images.[0]}

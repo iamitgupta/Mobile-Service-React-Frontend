@@ -5,10 +5,10 @@ import Filter from './Filter';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import api from '../services/api';
-import { Spinner, Button, Modal, Navbar, Container } from 'react-bootstrap';
-import Header from './Header';
+import { Row,Col, Spinner,Toast,Button} from 'react-bootstrap';
 import SortBy from './SortBy';
 import { FilterFilled } from '@ant-design/icons';
+import Compare from '../components/Compare'
 
 
 const MobileList = (props) => {
@@ -25,8 +25,8 @@ const MobileList = (props) => {
   const [hasMoreData, sethasMoreData] = useState(true);
 
 
-  console.log("Data from URL : ")
-  console.log(filterdata);
+  // console.log("Data from URL : ")
+  // console.log(filterdata);
 
   const [page, setPage] = useState(0);
 
@@ -152,12 +152,61 @@ const MobileList = (props) => {
 
 
   const [sortML, setSortML] = useState("");
+
+  const [compareML, setCompareSortML] = useState([]);
+
+  useEffect(()=>{
+
+  },[compareML]);
+
+  const [show, setShow] = useState(false);
+  const [body, setBody] = useState("");
+
+
+
+  
+
+
+
+  function mobileIdManager(mobileId){
+    var notAvail = true;
+    compareML.forEach((id)=>{
+        if(id==mobileId){
+          notAvail = false;
+            // alert("Mobile id : "+id+" already exists");
+            var index = compareML.indexOf(mobileId);
+            compareML.splice(index, 1)
+            setBody("Mobile id : "+mobileId+" removed from compare list")
+            setShow(true);
+        }
+    })
+    if(notAvail && compareML.length<3){
+      setCompareSortML([...compareML,mobileId]);
+      setBody("Mobile id "+mobileId+" added in compare list")
+      setShow(true);
+          
+    }
+    if(compareML.length>2){
+      setBody("Add only 3 mobiles at a time")
+      setShow(true);
+    }
+    
+    
+  }
+
+
+
+
   
 
   return (
 
     <>
-      <Header />
+      <Compare compareML={compareML} mobileIdManager={mobileIdManager} />
+
+
+      
+
       <div class="container-fluid py-3" >
         <div class="row">
           <div class="col">
@@ -213,6 +262,8 @@ const MobileList = (props) => {
 
 
 
+
+
        
 
 
@@ -245,7 +296,7 @@ const MobileList = (props) => {
                     }
                   >
                     {mobiles && mobiles.map((mob) => (
-                      <Mobile key={mobiles.mobileId} mobile={mob} />
+                      <Mobile key={mobiles.mobileId} mobile={mob} mobileIdManager={mobileIdManager} />
                     ))}
 
                   </InfiniteScroll>
@@ -257,6 +308,26 @@ const MobileList = (props) => {
           </div>
         </div>
       </div>
+
+      {/* floating window */}
+
+      <div class="fixed-bottom bottom-0 start-0">
+                <div class="position-fixed bottom-0 start-0 mb-2 ms-1" >
+                <Row>
+      <Col xs={6}>
+        <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
+          <Toast.Body>{body}</Toast.Body>
+        </Toast>
+      </Col>
+    </Row>
+                </div>
+            </div>
+
+      
+
+     
+
+      
 
      
     </>

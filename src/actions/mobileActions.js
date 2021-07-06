@@ -4,8 +4,8 @@ import {
   GET_SUGGESTIONS,
 } from "../constants/mobileConstatnts";
 import axios from "axios";
-
 import api from "../services/api";
+
 
 axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbWl0IiwiZXhwIjoxNjU2NjczOTY2LCJpYXQiOjE2MjUxMzc5NjZ9.r5p0sULytCtqPKuUT5pg3L0yZJusYLhZ7hJdh3l8ZqeDWbbNDjP1g4oX6RBmNpB-Go9Q2zUvVH0ZmdIz3P07sQ` 
 

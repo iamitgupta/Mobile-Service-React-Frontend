@@ -41,7 +41,7 @@ export default function Filter({sort}) {
 
             params.append("sort", query)   
         } else {
-            console.warn("sort nothing  selected");
+            // console.warn("sort nothing  selected");
             //delete query parameters
             params.delete("sort")
             // history.push("mobiles")
@@ -74,7 +74,7 @@ export default function Filter({sort}) {
 
             params.append("priceLow", query)   
         } else {
-            console.warn("priceLow Min  selected");
+            // console.warn("priceLow Min  selected");
             //delete query parameters
             params.delete("priceLow")
             // history.push("mobiles")
@@ -92,7 +92,7 @@ export default function Filter({sort}) {
 
             params.append("priceHigh", query)   
         } else {
-            console.warn("priceHigh Max  selected");
+            // console.warn("priceHigh Max  selected");
             //delete query parameters
             params.delete("priceHigh")
             // history.push("mobiles")
@@ -176,7 +176,7 @@ export default function Filter({sort}) {
             // console.warn("Query=" + query);
             // console.warn("Params = " + params.toString())
         } else {
-            console.warn("Nothing selected");
+            // console.warn("Nothing selected");
             //delete query parameters
             params.delete("brand")
             history.push("mobiles");
@@ -242,7 +242,7 @@ export default function Filter({sort}) {
             }
 
         } else {
-            console.warn("Nothing selected");
+            // console.warn("Nothing selected");
             //delete query parameters
             params.delete("upcoming")
             // history.push("mobiles")
@@ -311,7 +311,7 @@ export default function Filter({sort}) {
             //add query parameters
             params.append("rearCamera", query)
         } else {
-            console.warn("Nothing selected");
+            // console.warn("Nothing selected");
             //delete query parameters
             params.delete("rearCamera")
             history.push("mobiles");
@@ -376,7 +376,7 @@ export default function Filter({sort}) {
             //add query parameters
             params.append("frontCamera", query)
         } else {
-            console.warn("Nothing selected");
+            // console.warn("Nothing selected");
             //delete query parameters
             params.delete("frontCamera")
             history.push("mobiles");
@@ -439,7 +439,7 @@ export default function Filter({sort}) {
             }
 
         } else {
-            console.warn("Nothing selected");
+            // console.warn("Nothing selected");
             //delete query parameters
             params.delete("display")
             // history.push("mobiles")
@@ -514,7 +514,7 @@ export default function Filter({sort}) {
             // console.warn("Query=" + query);
             // console.warn("Params = " + params.toString())
         } else {
-            console.warn("Nothing selected");
+            // console.warn("Nothing selected");
             //delete query parameters
             params.delete("screenSize")
             history.push("mobiles");
@@ -583,7 +583,7 @@ export default function Filter({sort}) {
             //add query parameters
             params.append("ram", query)
         } else {
-            console.warn("Nothing selected");
+            // console.warn("Nothing selected");
             //delete query parameters
             params.delete("ram")
             history.push("mobiles");
@@ -647,7 +647,7 @@ export default function Filter({sort}) {
             }
 
         } else {
-            console.warn("Nothing selected");
+            // console.warn("Nothing selected");
             //delete query parameters
             params.delete("os")
             // history.push("mobiles")
@@ -706,7 +706,7 @@ export default function Filter({sort}) {
             //add query parameters
             params.append("inbuiltMemory", query)
         } else {
-            console.warn("inbuiltMemory Nothing selected");
+            // console.warn("inbuiltMemory Nothing selected");
             //delete query parameters
             params.delete("inbuiltMemory")
             history.push("mobiles");
@@ -766,7 +766,7 @@ export default function Filter({sort}) {
             //add query parameters
             params.append("battery", query)
         } else {
-            console.warn("battery Nothing selected");
+            // console.warn("battery Nothing selected");
             //delete query parameters
             params.delete("battery")
             history.push("mobiles");
@@ -848,7 +848,7 @@ export default function Filter({sort}) {
             // console.warn("Query=" + query);
             // console.warn("Params = " + params.toString())
         } else {
-            console.warn("cpu Nothing selected");
+            // console.warn("cpu Nothing selected");
             //delete query parameters
             params.delete("cpu")
             history.push("mobiles");
@@ -869,21 +869,21 @@ export default function Filter({sort}) {
 
     //global value change handler
     useEffect(() => {
-        console.log(brands);
-        console.log(available);
-        console.log(rearCamera);
-        console.log(frontCamera);
-        console.log(screenSize);
-        console.log(display);
-        console.log(ram);
-        console.log(os);
-        console.log(inbuiltMemory);
-        console.log(battery);
-        console.log(cpu);
+        // console.log(brands);
+        // console.log(available);
+        // console.log(rearCamera);
+        // console.log(frontCamera);
+        // console.log(screenSize);
+        // console.log(display);
+        // console.log(ram);
+        // console.log(os);
+        // console.log(inbuiltMemory);
+        // console.log(battery);
+        // console.log(cpu);
 
-        console.log(priceMin);
-        console.log(priceMax);
-        console.log(sort);
+        // console.log(priceMin);
+        // console.log(priceMax);
+        // console.log(sort);
         //call the query methods
         searchQueryBrand();
         searchQueryAvailablility();

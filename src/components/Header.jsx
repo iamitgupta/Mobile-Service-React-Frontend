@@ -37,11 +37,13 @@ export default function Header() {
         </Navbar>
       </div>
 
-      <div className=" pb-4 mb-4">
-        <div className=" pb-4 mb-4">
-
-        </div>
+      <div className="pb-4 mb-4">
+        
       </div>
+      <div className="pb-4 mb-4">
+        
+      </div>
+
 
 
 

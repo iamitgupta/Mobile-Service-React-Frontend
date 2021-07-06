@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Route } from 'react-router';
-import Header from '../components/Header';
+
 import MobileList from '../components/MobileList';
 import PopularMobiles from '../components/PopularMobiles';
 import UpcomingMobiles from '../components/UpcomingMobiles';
@@ -12,8 +12,8 @@ const Home = () => {
     document.title = "MobilesLove"
   }, [])
   return (
-    <div className="container-fluid">
-      <Header />
+    <div className="container-fluid mt-4 pt-4">
+      
 
      
       
@@ -22,12 +22,13 @@ const Home = () => {
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img  src="http://jpcamara.com/wp-content/uploads/2015/02/carousel.jpg" class="d-block w-100" alt="..."/>
+      {/* <div class ="bg-secondary d-block w-100"></div> */}
     </div>
     <div class="carousel-item">
-      <img  src="http://jpcamara.com/wp-content/uploads/2015/02/carousel.jpg" class="d-block w-100" alt="..."/>
+      {/* <img  src="http://jpcamara.com/wp-content/uploads/2015/02/carousel.jpg" class="d-block w-100" alt="..."/> */}
     </div>
     <div class="carousel-item">
-      <img  src="http://jpcamara.com/wp-content/uploads/2015/02/carousel.jpg" class="d-block w-100" alt="..."/>
+      {/* <img  src="http://jpcamara.com/wp-content/uploads/2015/02/carousel.jpg" class="d-block w-100" alt="..."/> */}
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -40,8 +41,11 @@ const Home = () => {
   </button>
 </div>
 
+
 <PopularMobiles />
 <UpcomingMobiles />
+
+
 
 
       
