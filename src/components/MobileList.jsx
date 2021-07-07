@@ -5,7 +5,7 @@ import Filter from './Filter';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import api from '../services/api';
-import { Row, Col, Spinner, Toast, Button } from 'react-bootstrap';
+import { Row, Col, Spinner, Toast } from 'react-bootstrap';
 import SortBy from './SortBy';
 import { FilterFilled } from '@ant-design/icons';
 
