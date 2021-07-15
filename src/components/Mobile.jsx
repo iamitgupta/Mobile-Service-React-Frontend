@@ -23,7 +23,7 @@ export default function Mobile({ mobile, mobileIdManager }) {
                 <div class="container ">
                     <div class="row card-body ">
                         <div class="col-lg-3 ">
-                            <Link to={`/mobile/${mobile.mobileId}/${mobile.title}`} ><img src={mobile.images.[0]} alt="Generic placeholder image" class="order-1 order-lg-2" height="180px" />
+                            <Link to={`/mobile/${mobile.mobileId}/${mobile.title}`} ><img src={mobile.images[0]} alt="Generic placeholder image" class="order-1 order-lg-2" height="180px" />
                             </Link>
 
                             <br />

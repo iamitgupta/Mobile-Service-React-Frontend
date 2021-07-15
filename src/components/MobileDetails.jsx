@@ -38,7 +38,7 @@ export default function MobileDetails() {
     }
     return (
         <div>
-            <div class="container my-4 py-4">
+            <div class="container-fluid my-4 py-4">
 
                 <ul class="list-group shadow ">
                     <li class="list-group-item card">
@@ -47,7 +47,7 @@ export default function MobileDetails() {
                             <div class="row card-body">
                                 <div class="col-sm me-2">
 
-                                    <img src={mobile.images.[0]} alt="Generic placeholder image" class="order-1 order-lg-2" height="180px" />
+                                    <img src={mobile.images[0]} alt="Generic placeholder image" class="order-1 order-lg-2" height="180px" />
 
 
 
@@ -92,7 +92,7 @@ export default function MobileDetails() {
                 </ul>
             </div>
             {/* General */}
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm">
                         <table class="table table-hover table-striped table-striped">

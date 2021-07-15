@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import api from '../services/api';
 import queryString from 'query-string';
 
+import CompareMobile from './CompareMobile'
+
 export default function Compare(props) {
 
   //create url based
@@ -17,15 +19,18 @@ export default function Compare(props) {
   console.log(filterdata);
 
   const [mobiles, setMobiles] = useState([]);
-  const [mobileId, setMobileId] = useState([]);
+  const [mobileIds, setMobileIds] = useState([]);
 
   const [mobileOne, setMobileOne] = useState("");
   const [mobileTwo, setMobileTwo] = useState("");
   const [mobileThree, setMobileThree] = useState("");
 
-  const [mobOne, setMobOne] = useState([]);
-  const [mobTwo, setMobTwo] = useState([]);
-  const [mobThree, setMobThree] = useState([]);
+  var id1 = "";
+  var id2 = "";
+  var id3 = "";
+  
+
+  
 
 
 
@@ -33,64 +38,65 @@ export default function Compare(props) {
 
   useEffect(() => {
 
-    setMobileId(compareIds.split(","));
+    setMobileIds(compareIds.split(","));
 
-    console.warn("mobile ids to compare " + mobileId)
+    console.warn("mobile ids to compare " + mobileIds)
 
-    setMobileOne("");
-    setMobileTwo("");
-    setMobileThree("");
-
-    if (mobileId.length > 0) {
-      setMobileOne(mobileId.[0]);
-    }
-    if (mobileId.length > 1) {
-      setMobileTwo(mobileId.[1]);
-    }
-    if (mobileId.length > 2) {
-      setMobileThree(mobileId.[2]);
-    }
-    getMobile(
-      {
-        mobileOne,
-        mobileTwo,
-        mobileThree
+    for(var i=0; i<mobileIds.length;i++){
+      if(i==0){
+        id1=mobileIds[i];
       }
-    );
+      if(i==1){
+        id2=mobileIds[i];
+      }
+      if(i==2){
+        id3=mobileIds[i];
+      }
+    }
 
-    setMobileData();
+    for(var i=0; i<mobiles.length;i++){
+      if(i==0){
+       setMobileOne(mobiles[i]);
+      }
+      if(i==1){
+        setMobileTwo(mobiles[i]);
+      }
+      if(i==2){
+        setMobileThree(mobiles[i]);
+      }
+    }
+
+    if(compareIds.length>=2){
+      console.warn("getMobile if 2 or more"+id1+" - "+id2+" - "+id3);
+      getMobile(
+        {
+          id1,
+          id2,
+          id3
+        }
+      );
+    }
+    
+      
     
 
-  }, [compareIds.length, mobileId.length, mobileOne, mobileTwo, mobileThree]);
+
+  }, [mobileIds.length,mobiles.length]);
 
 
-  function setMobileData() {
-    setMobOne([]);
-    setMobTwo([]);
-    setMobThree([]);
-
-    if (mobiles.length > 0) {
-      setMobOne(mobiles.[0]);
-    }
-    if (mobiles.length > 1) {
-      setMobTwo(mobiles.[1]);
-    }
-    if (mobiles.length > 2) {
-      setMobThree(mobiles.[2]);
-    }
-  }
+  
 
 
   async function getMobile(
     {
-      mobileOne,
-      mobileTwo,
-      mobileThree
+      id1,
+      id2,
+      id3
     }
 
   ) {
     try {
-      const query = `comparison?mobileOne=${mobileOne}&mobileTwo=${mobileTwo}&mobileThree=${mobileThree}`;
+      const query = `comparison?mobileOne=${id1}&mobileTwo=${id2}&mobileThree=${id3}`;
       console.warn("Query : " + query);
       const response = await api.get(query);
       //   if (response.data) {
@@ -105,102 +111,25 @@ export default function Compare(props) {
 
   }
 
+  if(mobiles.length>=2 && mobileOne && mobileTwo){
+    return (
+      <>
+      {/* {JSON.stringify(mobileOne)}
+      <br/>
+      {JSON.stringify(mobileTwo)}
+      <br/>
+      {JSON.stringify(mobileThree)} */}
+      <CompareMobile mobileOne={mobileOne} mobileTwo={mobileTwo} mobileThree={mobileThree} size={mobiles.length}/>
+      </>
+    );
+  }
+
 
 
 
   return (
     <>
-   
-
-      <div className="container">
-        <div className="row">
-          <div className="col-sm">
-            <table class="table">
-              <thead class="thead bg-primary text-light ">
-                <tr>
-                  <th scope="row"></th>
-                  {mobiles && mobiles.map((mob) => (
-                   <td> 
-                   {mob.mobile.title != null ?
-                     mob.mobile.title
-                     :
-                     <>NA</>
-                   }
-                   </td>
-                  ))}
-
-                </tr>
-
-                
-              </thead>
-              <tbody>
-              <tr>
-                  <th scope="row"></th>
-                  {mobiles && mobiles.map((mob) => (
-                   <td> 
-                   {mob.mobile.title != null ?
-                      <img  src={mob.mobile.images.[0]}
-                      alt="Card image cap" height="100px" width="70px"></img>
-                     :
-                     <>NA</>
-                   }
-                   </td>
-                  ))}
-
-                </tr>
-              </tbody>
-            
-            </table>
-          </div>
-
-        </div>
-      </div>
-
-      {/* {JSON.stringify(mobOne)} */}
-      <div className="container">
-        <div className="row">
-          <div className="col-sm">
-            <table class="table">
-              <tbody>
-              <tr>
-                  <th scope="row" colSpan={mobiles.length+1}>General</th>
-                 
-
-                </tr>
-              <tr>
-                  <th scope="row">SIM Type</th>
-                  {mobiles && mobiles.map((mob) => (
-                   <td> 
-                   {mob.mobile.general.simType != null ?
-                      mob.mobile.general.simType
-                     :
-                     <>NA</>
-                   }
-                   </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th scope="row">Dual SIM</th>
-                  {mobiles && mobiles.map((mob) => (
-                   <td> 
-                   {mob.mobile.general.dualSim != null ?
-                      mob.mobile.general.dualSim
-                     :
-                     <>NA</>
-                   }
-                   </td>
-                  ))}
-                </tr>
-              </tbody>
-            
-            </table>
-          </div>
-
-        </div>
-      </div>
-
-
-
+    <h1>Loading.....</h1>
     </>
 
   );
