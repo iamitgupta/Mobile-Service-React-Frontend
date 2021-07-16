@@ -18,8 +18,11 @@ export default function MobileSmall(props) {
 
                     </div>
                     <p class="text-wrap" >{mobile.title} </p>
-                    <button type="button" class="btn btn-warning">Compare</button>
+                    <Link to={`/mobile/${mobile.mobileId}/${mobile.title}`} ><button type="button" class="btn btn-warning w-100">See Details</button>
 
+                        </Link>
+                       
+                    
                     {/* <Link to={`/mobile/${mobile.mobileId}`} style={{color: 'white'}} activeStyle={{color: 'red'}}  class="text-warning stretched-link"></Link> */}
 
 
