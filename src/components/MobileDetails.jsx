@@ -690,7 +690,7 @@ export default function MobileDetails() {
                         <table class="table table-hover table-striped">
                             <thead class="thead bg-primary text-light">
                                 <tr>
-                                    <th scope="col" colspan="2">Extra</th>
+                                    <th scope="col" colspan="2">Extras</th>
 
                                 </tr>
                             </thead>
