@@ -19,11 +19,11 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
 
     return (
         <>
-            <div className="container-fluid">
+            <div className="container-fluid bg-light">
                 <div className="row">
                     <div className="col-sm">
                         <table class="table">
-                            <thead class="thead bg-primary text-light ">
+                            <thead class="thead bg-primary text-light  ">
                                 <tr>
 
                                     {mobileOne && (
@@ -60,12 +60,12 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
 
 
                             </thead>
-                            <tbody>
+                            <tbody >
                                 <tr>
 
                                     {mobileOne && (
                                         <td>
-                                            {mobileOne.mobile.title != null ?
+                                            {mobileOne.mobile.images[0] != null ?
                                                 <img src={mobileOne.mobile.images[0]}
                                                     alt="Card image cap" height="100px" width="70px"></img>
                                                 :
@@ -75,7 +75,7 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
                                     )}
                                     {mobileTwo && (
                                         <td>
-                                            {mobileTwo.mobile.title != null ?
+                                            {mobileTwo.mobile.images[0] != null ?
                                                 <img src={mobileTwo.mobile.images[0]}
                                                     alt="Card image cap" height="100px" width="70px"></img>
                                                 :
@@ -85,7 +85,7 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
                                     )}
                                     {mobileThree && (
                                         <td>
-                                            {mobileThree.mobile.title != null ?
+                                            {mobileThree.mobile.images[0] != null ?
                                                 <img src={mobileThree.mobile.images[0]}
                                                     alt="Card image cap" height="100px" width="70px"></img>
                                                 :
