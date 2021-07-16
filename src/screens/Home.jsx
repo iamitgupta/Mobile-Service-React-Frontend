@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Route } from 'react-router';
 
 import MobileList from '../components/MobileList';
+import MobileSmall from '../components/MobileSmall';
 import PopularMobiles from '../components/PopularMobiles';
 import UpcomingMobiles from '../components/UpcomingMobiles';
 
@@ -21,14 +22,14 @@ const Home = () => {
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img  src="http://jpcamara.com/wp-content/uploads/2015/02/carousel.jpg" class="d-block w-100" alt="..."/>
-      {/* <div class ="bg-secondary d-block w-100"></div> */}
+      <img  src="https://i.ibb.co/MS1Lg3n/soon.jpg" class="d-block w-100" alt="..."/>
+      <div class ="bg-secondary d-block w-100"></div>
     </div>
     <div class="carousel-item">
-      {/* <img  src="http://jpcamara.com/wp-content/uploads/2015/02/carousel.jpg" class="d-block w-100" alt="..."/> */}
+      <img  src="https://i.ibb.co/MS1Lg3n/soon.jpg" class="d-block w-100" alt="..."/>
     </div>
     <div class="carousel-item">
-      {/* <img  src="http://jpcamara.com/wp-content/uploads/2015/02/carousel.jpg" class="d-block w-100" alt="..."/> */}
+      <img  src="https://i.ibb.co/MS1Lg3n/soon.jpg" class="d-block w-100" alt="..."/>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -40,6 +41,8 @@ const Home = () => {
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+
+
 
 
 <PopularMobiles />

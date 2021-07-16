@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import api from '../services/api';
 import '../styles/style.css';
 
@@ -28,7 +29,7 @@ const UpcomingMobiles = () => {
     async function getMobiles() {
         console.warn("====getMobiles====");
         try {
-            const query = `mobileservice?sort=popularity&size=6&upcoming=true`;
+            const query = `mobileservice?sort=popularity&upcoming=true`;
             console.warn("Query : " + query);
             const response = await api.get(query);
 
@@ -48,21 +49,37 @@ const UpcomingMobiles = () => {
 
     return (
 
-        <div className="m-4 p-4">
-            <div class="container-fluid p-2 bg-info" style={{ height: "45px" }}>
-                <p class=" float-left text-light">Upcoming Mobiles</p>
-                <button type="button" class="btn btn-outline-light float-end btn-sm ">See More</button>
+
+        <div >
+
+
+            <nav class="nav bg-primary nav-justified p-1">
+
+
+                <li class="nav-item">
+                    <h5 class=" text-light float-start">Upcoming Mobiles</h5>
+                </li>
+                <li class="nav-item">
+
+
+                    <Link to={`/mobiles`} >
+                        <button type="button" class="btn btn-outline-light float-end btn-sm">See More</button>
+                    </Link>
+
+
+                </li>
+
+
+            </nav>
+
+            <div className="scrolling-wrapper">
+                {mobiles && mobiles.map((mob) => (
+                    <MobileSmall key={mobiles.mobileId} mobile={mob} />
+                ))}
             </div>
-           <span className="container-fluid">
-                <span className="row">
-                    {mobiles && mobiles.map((mob) => (
-                        <MobileSmall key={mobiles.mobileId} mobile={mob} />
-                    ))}
-                </span>
-            </span>
+
 
         </div>
-
     );
 };
 

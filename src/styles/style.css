@@ -4,3 +4,36 @@ a:link {
 .table td {
 text-align: center;
 } 
+
+
+/* horizontal scroll */
+
+
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+.scrolling-wrapper .obj {
+    display: inline-block;
+}
+.scrolling-wrapper-flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+.scrolling-wrapper-flexbox .obj {
+    flex: 0 0 auto;
+    margin-right: 3px;
+}
+
+.scrolling-wrapper, .scrolling-wrapper-flexbox {
+    height: auto;
+    margin-bottom: 20px;
+    width: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.scrolling-wrapper::-webkit-scrollbar, .scrolling-wrapper-flexbox::-webkit-scrollbar {
+    display: none;
+}
