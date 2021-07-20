@@ -8,6 +8,7 @@ import Home from './screens/Home';
 import store from './store';
 import Header from './components/Header';
 import Compare from './components/Compare';
+import Footer from './components/Footer';
 
 
 
@@ -19,6 +20,7 @@ function App() {
       <Router>
         <div className="App">
         <Header />
+      
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/mobiles" component={MobileList} />
@@ -30,6 +32,7 @@ function App() {
           </Switch>
         </div>
       </Router>
+      <Footer />
     </Provider>
   );
 }

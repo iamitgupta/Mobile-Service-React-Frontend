@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 import MobileSmall from './MobileSmall';
+import { Spinner } from 'react-bootstrap';
 
 
 const PopularMobiles = () => {
@@ -24,7 +25,17 @@ const PopularMobiles = () => {
     }, []);
 
 
-
+    if (mobiles.length==0) {
+        return <div class="d-flex justify-content-center" >
+            <Spinner animation="grow" variant="primary" />
+            <Spinner animation="grow" variant="secondary" />
+            <Spinner animation="grow" variant="success" />
+            <Spinner animation="grow" variant="danger" />
+            <Spinner animation="grow" variant="warning" />
+            <Spinner animation="grow" variant="info" />
+            <Spinner animation="grow" variant="dark" />
+        </div>;
+    }
 
     async function getMobiles() {
         console.warn("====getMobiles====");

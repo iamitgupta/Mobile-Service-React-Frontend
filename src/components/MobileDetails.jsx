@@ -34,7 +34,7 @@ export default function MobileDetails() {
         ));
     }, [mobileId]);
 
-    let ind = true;
+
 
     if (!mobile) {
         return <div class="d-flex justify-content-center" >
