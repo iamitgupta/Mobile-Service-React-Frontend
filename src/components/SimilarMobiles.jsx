@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import MobileSmall from './MobileSmall';
 
 
-const PopularMobiles = () => {
+const SimilarMobiles = ({title}) => {
 
     console.warn("====Pop====");
 
@@ -29,12 +29,12 @@ const PopularMobiles = () => {
     async function getMobiles() {
         console.warn("====getMobiles====");
         try {
-            const query = `mobileservice?sort=popularity&size=10`;
-            console.warn("Query : " + query);
+            const query = `mobileservice?search=${title}&size=10`;
+            console.warn(" similar Query : " + query);
             const response = await api.get(query);
 
             setMobiles(response.data);
-            console.log("Mobiles api call : " + response.data);
+            console.log(" similar Mobiles api call : " + response.data);
 
         } catch (error) {
             console.error(error);
@@ -55,7 +55,7 @@ const PopularMobiles = () => {
 
 
                 <li class="nav-item">
-                    <h5 class=" text-light float-start">Popular Mobiles</h5>
+                    <h5 class=" text-light float-start">Similar Mobiles</h5>
                 </li>
                 <li class="nav-item">
 
@@ -85,7 +85,7 @@ const PopularMobiles = () => {
 
 
 
-export default PopularMobiles;
+export default SimilarMobiles;
 
 
 

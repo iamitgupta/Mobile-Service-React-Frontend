@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../services/api';
- const params = new URLSearchParams();
+
+import { CloseCircleOutlined } from '@ant-design/icons';
+
+
+
+const params = new URLSearchParams();
+
+
 
 
 export default function CompareModal({ compareML, mobileIdManager }) {
@@ -28,9 +35,9 @@ export default function CompareModal({ compareML, mobileIdManager }) {
             }
         });
 
-        if(mobiles.length>=2){
+        if (mobiles.length >= 2) {
             setCompareNowBtn(false);
-        }else{
+        } else {
             setCompareNowBtn(true);
         }
 
@@ -63,7 +70,7 @@ export default function CompareModal({ compareML, mobileIdManager }) {
     }, [compareML]);
 
     //remove extra mobile data if not in compareML
-     useEffect(() => {
+    useEffect(() => {
         let exists = false;
         mobiles.forEach(mobile => {
             exists = false;
@@ -104,29 +111,29 @@ export default function CompareModal({ compareML, mobileIdManager }) {
 
     }
 
-    function compareURLGenerator(){
+    function compareURLGenerator() {
 
         let query = "";
         let name = "";
-        if (mobiles.length>=2) {
-            
-            mobiles.forEach((mobile)=>{
+        if (mobiles.length >= 2) {
+
+            mobiles.forEach((mobile) => {
                 query += `${mobile.mobileId},`;
                 name += `${mobile.title} VS `;
             });
 
         }
         console.warn("Query compare " + query)
-        
+
         //if nothing is selected delete query from url
         if (query) {
             //remove last ,
             query = query.slice(0, -1);
             name = name.slice(0, -4).replaceAll(" ", "-");
             params.append("compareIds", query)
-            history.push("../compare?" + params.toString()+"&titles="+name);
+            history.push("../compare?" + params.toString() + "&titles=" + name);
 
-    
+
         } else {
             // console.warn("Nothing selected");
             //delete query parameters
@@ -140,15 +147,15 @@ export default function CompareModal({ compareML, mobileIdManager }) {
 
             <div class="fixed-bottom bottom-0 end-0">
                 <div class="position-fixed bottom-0 end-0 mb-2 ms-4" >
-                {compareML.length > 0 ?
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#compareModal">
-              Compare <span class="badge bg-secondary">{compareML.length}</span>
-          </button>
-              :
-              <h1></h1>
+                    {compareML.length > 0 ?
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#compareModal">
+                            Compare <span class="badge bg-secondary">{compareML.length}</span>
+                        </button>
+                        :
+                        <h1></h1>
 
-            }
-                    
+                    }
+
                 </div>
             </div>
 
@@ -164,30 +171,56 @@ export default function CompareModal({ compareML, mobileIdManager }) {
                             <h5 class="modal-title" id="exampleModalLabel">Mobile Comparison</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body d-flex justify-content-center">
 
-                            <span className="container">
-                                <span className="row">
-                                    {mobiles && mobiles.map((mobile) => (
-                                        <span className="col mobile-small " key={mobile.mobileId}>
-                                            <div class="card ">
-                                                < div className="card-body">
-                                                    <img class="card-img-top" src={mobile.images.[0]}
-                                                        alt="Card image cap" height="120px" width="90px"></img>
+                        {compareML.length == 0 ?
+                         <Link to={`/mobiles`} >
+                         <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" >Add atlest one mobile to compare</button>
+                         </Link>
+                        :
+                        <h1></h1>
 
-                                                </div>
-                                                <p class="card-text">{mobile.title}</p>
+                    }
 
-                                                <Link to={`/mobile/${mobile.mobileId}/${mobile.title}`} class=" font-weight-bold  text-primary mobile-title-list"><button type="button" class="btn btn-warning" data-bs-dismiss="modal">Details</button></Link>
-                                                <br />
-                                                <button type="button" class="btn btn-success my-2" onClick={() => mobileIdManager(mobile.mobileId)} >Remove</button>
-                                                <h3>{mobile.mobileId}</h3>
-                                            </div>
+
+
+                            <span class=" scrolling-wrapper ">
+                                {mobiles && mobiles.map((mobile) => (
+
+
+
+
+
+                                    <div class="card p-1 obj overflow-hidden" style={{ width: "140px", height: "250px" }} >
+                                       <CloseCircleOutlined  onClick={() => mobileIdManager(mobile.mobileId)} />
+                                        < div className="card-body">
+                                          
+
+                                            <Link to={`/mobile/${mobile.mobileId}/${mobile.title}`} data-bs-dismiss="modal" ><img class="img-thumbnail" src={mobile.images[0]} alt="img" class="order-1 order-lg-2" height="140px" />
+                                            </Link>
+
+                                        </div>
+                                        
+                                        
+                                        <span class="bottom-0 ">
+                                        <Link to={`/mobile/${mobile.mobileId}/${mobile.title}`}  data-bs-dismiss="modal" ><p class="text-wrap" >{mobile.title} </p>
+
+                                        </Link>
+                                        <br />
+                                         
                                         </span>
-                                    ))}
-                                </span>
+
+
+                                       
+
+                                    </div>
+
+
+
+                                ))}
                             </span>
 
+                           
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" onClick={() => compareURLGenerator()} data-bs-dismiss="modal" disabled={compareNowBtn}>Compare Now</button>

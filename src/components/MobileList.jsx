@@ -204,7 +204,7 @@ const MobileList = (props) => {
   return (
 
     <>
-      <CompareModal compareML={compareML}  mobileIdManager={mobileIdManager}></CompareModal>
+      <CompareModal compareML={compareML} mobileIdManager={mobileIdManager}></CompareModal>
 
 
 
@@ -291,7 +291,7 @@ const MobileList = (props) => {
                   next={fetchMoreData}
                   hasMore={hasMoreData}
                   loader={
-                    <div class="mx-auto" style={{ width: "200px" }}>
+                    <div class="d-flex justify-content-center" >
                       <Spinner animation="border" variant="primary" />
                     </div>
 

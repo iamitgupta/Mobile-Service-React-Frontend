@@ -10,6 +10,9 @@ import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 import CameraFrontIcon from '@material-ui/icons/CameraFront';
 import { getMobile } from '../actions/mobileActions';
 import { Spinner } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
+import SimilarMobiles from './SimilarMobiles';
+
 
 
 
@@ -31,10 +34,12 @@ export default function MobileDetails() {
         ));
     }, [mobileId]);
 
+let ind= true;
+
     if (!mobile) {
-        return <div class="mx-auto" style={{ width: "200px" }}>
-        <Spinner animation="border" variant="primary" />
-      </div>;
+        return <div class="d-flex justify-content-center" >
+            <Spinner animation="border" variant="primary" />
+        </div>;
     }
     return (
         <div>
@@ -45,15 +50,49 @@ export default function MobileDetails() {
 
                         <div class="container media align-items-lg-center flex-column flex-lg-row ">
                             <div class="row card-body">
-                                <div class="col-sm me-2">
+                                <div class="col-sm-2 d-flex justify-content-center overflow-hidden">
 
-                                    <img src={mobile.images[0]} alt="Generic placeholder image" class="order-1 order-lg-2" height="180px" />
+                                    {/* <img src={mobile.images[0]} alt="Generic placeholder image" class="order-1 order-lg-2" height="180px" /> */}
 
+
+                                    <Carousel slide={false} 
+                                    
+                                  
+                                    >
+                                    
+ 
+
+      {mobile.images.map((img=>{
+         return(
+          <Carousel.Item interval={2000}>
+        <img
+      className="d-block w-100"
+      src={img}
+      alt="First slide"
+
+      height="230px"
+
+      
+    />
+     
+    </Carousel.Item>
+         );
+    
+    
+      }))}
+    
+   
+
+</Carousel>
+
+
+
+                                    {/* image */}
 
 
                                 </div>
-                                <div class="col-sm my-3">
-                                    <div class="media-body order-2 order-lg-1 my-4">
+                                <div class="col-lg-8 my-3">
+                                    <div class="media-body order-2 order-lg-1 ">
                                         <h5 class="mt-0 font-weight-bold mb-2">{mobile.title}</h5>
                                         <span class="badge badge-success p-2">Spec Score : {mobile.specScore}</span>
                                         <p class="font-italic text-muted mb-0 small">
@@ -79,9 +118,16 @@ export default function MobileDetails() {
                                             <h6 class="font-weight-bold my-2">₹{mobile.price}</h6>
 
                                         </div>
+                                        {mobile.upcoming  ?
+                                    
+                                    <span class="badge bg-warning text-dark">Upcoming</span>
+                                        
+                                    :
+                                    <></>
+                                }
                                     </div>
                                 </div>
-        
+
 
                             </div>
 
@@ -881,6 +927,7 @@ export default function MobileDetails() {
                 </div>
             </div>
 
+            <SimilarMobiles title={mobile.title.slice(0,-5)} />
         </div>
 
     );

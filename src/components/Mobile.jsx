@@ -28,7 +28,12 @@ export default function Mobile({ mobile, mobileIdManager }) {
 
                             <br />
                             <button type="button" class="btn btn-success my-2" onClick={() => mobileIdManager(mobile.mobileId)} >Compare</button>
-                                <h3>{mobile.mobileId}</h3>
+                            
+                            
+
+                            
+
+
                         </div>
                         <br />
                         <br />
@@ -60,6 +65,13 @@ export default function Mobile({ mobile, mobileIdManager }) {
                                     <h6 class="font-weight-bold my-2">₹{mobile.price}</h6>
 
                                 </div>
+                                {mobile.upcoming  ?
+                                    
+                                    <span class="badge bg-warning text-dark">Upcoming</span>
+                                        
+                                    :
+                                    <></>
+                                }
                             </div>
                         </div>
                         <div class="col-sm-3">

@@ -3,6 +3,7 @@ import { Route } from 'react-router';
 
 import MobileList from '../components/MobileList';
 import MobileSmall from '../components/MobileSmall';
+import PopularBrands from '../components/PopularBrands';
 import PopularMobiles from '../components/PopularMobiles';
 import UpcomingMobiles from '../components/UpcomingMobiles';
 
@@ -44,7 +45,7 @@ const Home = () => {
 
 
 
-
+<PopularBrands />
 <PopularMobiles />
 <UpcomingMobiles />
 

@@ -29,7 +29,7 @@ const UpcomingMobiles = () => {
     async function getMobiles() {
         console.warn("====getMobiles====");
         try {
-            const query = `mobileservice?sort=popularity&upcoming=true`;
+            const query = `mobileservice?sort=popularity&upcoming=true&size=10`;
             console.warn("Query : " + query);
             const response = await api.get(query);
 

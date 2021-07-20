@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBox';
@@ -7,6 +7,34 @@ import SearchBar from './SearchBox';
 
 
 export default function Header() {
+
+  const [home,setHome] = useState(true);
+  const [mobiles,setMobiles] = useState(false);
+
+  let btn_home = home ? "nav-link obj active text-primary" : "nav-link obj text-secondary";
+  let btn_mobiles = mobiles ? "nav-link obj active text-primary" : "nav-link obj text-secondary";
+
+  useEffect(() => {
+    console.warn("button details "+ btn_home + " "+btn_mobiles);
+    
+  }, [home,mobiles,btn_home,btn_mobiles])
+
+
+
+  function homeClick(){
+    setHome(true);
+    setMobiles(false);
+
+  }
+
+  function mobileClick(){
+    setHome(false);
+    setMobiles(true);
+
+  }
+
+
+
   return (
     <>
 
@@ -25,12 +53,18 @@ export default function Header() {
           </div>
         </nav>
 
-        <nav class=" scrolling-wrapper bg-light">
+        <div class=" scrolling-wrapper bg-light nav nav-tabs">
 
-          <Link class="nav-link obj" to="/">HOME</Link>
-          <Link class="nav-link obj " to="/mobiles">MOBILES</Link>
 
-        </nav>
+          <Link class={btn_home}  to="/" onClick={homeClick}>HOME</Link>
+          <Link class={btn_mobiles} to="/mobiles" onClick={mobileClick}>MOBILES</Link>
+
+          
+
+        </div>
+
+
+        
 
 
 
