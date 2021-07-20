@@ -34,11 +34,17 @@ export default function MobileDetails() {
         ));
     }, [mobileId]);
 
-let ind= true;
+    let ind = true;
 
     if (!mobile) {
         return <div class="d-flex justify-content-center" >
-            <Spinner animation="border" variant="primary" />
+            <Spinner animation="grow" variant="primary" />
+            <Spinner animation="grow" variant="secondary" />
+            <Spinner animation="grow" variant="success" />
+            <Spinner animation="grow" variant="danger" />
+            <Spinner animation="grow" variant="warning" />
+            <Spinner animation="grow" variant="info" />
+            <Spinner animation="grow" variant="dark" />
         </div>;
     }
     return (
@@ -55,35 +61,35 @@ let ind= true;
                                     {/* <img src={mobile.images[0]} alt="Generic placeholder image" class="order-1 order-lg-2" height="180px" /> */}
 
 
-                                    <Carousel slide={false} 
-                                    
-                                  
+                                    <Carousel slide={false}
+
+
                                     >
-                                    
- 
 
-      {mobile.images.map((img=>{
-         return(
-          <Carousel.Item interval={2000}>
-        <img
-      className="d-block w-100"
-      src={img}
-      alt="First slide"
 
-      height="230px"
 
-      
-    />
-     
-    </Carousel.Item>
-         );
-    
-    
-      }))}
-    
-   
+                                        {mobile.images.map((img => {
+                                            return (
+                                                <Carousel.Item interval={2000}>
+                                                    <img
+                                                        className="d-block w-100"
+                                                        src={img}
+                                                        alt="First slide"
 
-</Carousel>
+                                                        height="230px"
+
+
+                                                    />
+
+                                                </Carousel.Item>
+                                            );
+
+
+                                        }))}
+
+
+
+                                    </Carousel>
 
 
 
@@ -118,13 +124,13 @@ let ind= true;
                                             <h6 class="font-weight-bold my-2">₹{mobile.price}</h6>
 
                                         </div>
-                                        {mobile.upcoming  ?
-                                    
-                                    <span class="badge bg-warning text-dark">Upcoming</span>
-                                        
-                                    :
-                                    <></>
-                                }
+                                        {mobile.upcoming ?
+
+                                            <span class="badge bg-warning text-dark">Upcoming</span>
+
+                                            :
+                                            <></>
+                                        }
                                     </div>
                                 </div>
 
@@ -927,7 +933,7 @@ let ind= true;
                 </div>
             </div>
 
-            <SimilarMobiles title={mobile.title.slice(0,-5)} />
+            <SimilarMobiles title={mobile.title.slice(0, -5)} />
         </div>
 
     );

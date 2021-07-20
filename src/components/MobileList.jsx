@@ -284,7 +284,7 @@ const MobileList = (props) => {
           <div class="col-lg-9 ">
 
 
-            <ul class="list-group  ">
+            <ul class="list-group ">
               {mobiles &&
                 <InfiniteScroll
                   dataLength={mobiles.length} //This is important field to render the next data
@@ -292,7 +292,13 @@ const MobileList = (props) => {
                   hasMore={hasMoreData}
                   loader={
                     <div class="d-flex justify-content-center" >
-                      <Spinner animation="border" variant="primary" />
+                      <Spinner animation="grow" variant="primary" />
+                      <Spinner animation="grow" variant="secondary" />
+                      <Spinner animation="grow" variant="success" />
+                      <Spinner animation="grow" variant="danger" />
+                      <Spinner animation="grow" variant="warning" />
+                      <Spinner animation="grow" variant="info" />
+                      <Spinner animation="grow" variant="dark" />
                     </div>
 
                   }
