@@ -3,6 +3,7 @@ import api from '../services/api';
 import queryString from 'query-string';
 
 import CompareMobile from './CompareMobile'
+import { Spinner } from 'react-bootstrap';
 
 export default function Compare(props) {
 
@@ -129,7 +130,16 @@ export default function Compare(props) {
 
   return (
     <>
-    <h1>Loading.....</h1>
+   <div class="d-flex justify-content-center" >
+                      <Spinner animation="grow" variant="primary" />
+                      <Spinner animation="grow" variant="secondary" />
+                      <Spinner animation="grow" variant="success" />
+                      <Spinner animation="grow" variant="danger" />
+                      <Spinner animation="grow" variant="warning" />
+                      <Spinner animation="grow" variant="info" />
+                      <Spinner animation="grow" variant="dark" />
+                    </div>
+
     </>
 
   );

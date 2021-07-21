@@ -27,8 +27,8 @@ const MobileList = (props) => {
   const [hasMoreData, sethasMoreData] = useState(true);
 
 
-  // console.log("Data from URL : ")
-  // console.log(filterdata);
+  console.log("Data from URL : ")
+  console.log(filterdata);
 
   const [page, setPage] = useState(0);
 
@@ -109,8 +109,11 @@ const MobileList = (props) => {
       const query = `mobileservice?brand=${brand}&upcoming=${upcoming}&rearCamera=${rearCamera}&frontCamera=${frontCamera}&display=${display}&screenSize=${screenSize}&ram=${ram}&os=${os}&inbuiltMemory=${inbuiltMemory}&battery=${battery}&cpu=${cpu}&priceLow=${priceLow}&priceHigh=${priceHigh}&search=${search}&sort=${sort}&page=${page}`;
       console.warn("Query : " + query);
       const response = await api.get(query);
+      console.warn("api response mobilelist");
+      console.warn(response);
       if (response.data.length > 0) {
         setMobiles([...mobiles, ...response.data]);
+        console.warn(mobiles);
         if (response.data.length >= 20) {
           sethasMoreData(true);
           // console.warn("hashmore : " + hasMoreData);
@@ -121,6 +124,7 @@ const MobileList = (props) => {
         sethasMoreData(false);
         // console.warn("No hashmore : " + hasMoreData);
       }
+      console.warn("Mobile api call");
 
       // console.log("Mobiles api call : " + response.data);
     } catch (error) {
@@ -146,8 +150,8 @@ const MobileList = (props) => {
     }
 
   }
-  // console.warn("Rendering....");
-  // console.warn(mobiles);
+  console.warn("Rendering....");
+  console.warn(mobiles);
   // console.warn("More data: " + hasMoreData);
 
 

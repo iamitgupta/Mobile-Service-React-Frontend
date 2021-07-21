@@ -29,7 +29,7 @@ const SimilarMobiles = ({title}) => {
     async function getMobiles() {
         console.warn("====getMobiles====");
         try {
-            const query = `mobileservice?search=${title}&size=10`;
+            const query = `mobileservice?search=${title}&sort=popularity&size=10`;
             console.warn(" similar Query : " + query);
             const response = await api.get(query);
 

@@ -29,6 +29,7 @@ export default function MobileDetails() {
     const mobile = useSelector((state) => state.mobile.mobile);
 
     useEffect(() => {
+        window.scrollTo(0,0);
         dispatch(getMobile(
             mobileId
         ));
@@ -933,7 +934,7 @@ export default function MobileDetails() {
                 </div>
             </div>
 
-            <SimilarMobiles title={mobile.title.slice(0, -5)} />
+            <SimilarMobiles title={mobile.brand} />
         </div>
 
     );
