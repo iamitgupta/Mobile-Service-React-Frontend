@@ -29,9 +29,9 @@ export default function Compare(props) {
   var id1 = "";
   var id2 = "";
   var id3 = "";
-  
 
-  
+
+
 
 
 
@@ -43,32 +43,32 @@ export default function Compare(props) {
 
     console.warn("mobile ids to compare " + mobileIds)
 
-    for(var i=0; i<mobileIds.length;i++){
-      if(i==0){
-        id1=mobileIds[i];
+    for (var i = 0; i < mobileIds.length; i++) {
+      if (i == 0) {
+        id1 = mobileIds[i];
       }
-      if(i==1){
-        id2=mobileIds[i];
+      if (i == 1) {
+        id2 = mobileIds[i];
       }
-      if(i==2){
-        id3=mobileIds[i];
+      if (i == 2) {
+        id3 = mobileIds[i];
       }
     }
 
-    for(var i=0; i<mobiles.length;i++){
-      if(i==0){
-       setMobileOne(mobiles[i]);
+    for (var i = 0; i < mobiles.length; i++) {
+      if (i == 0) {
+        setMobileOne(mobiles[i]);
       }
-      if(i==1){
+      if (i == 1) {
         setMobileTwo(mobiles[i]);
       }
-      if(i==2){
+      if (i == 2) {
         setMobileThree(mobiles[i]);
       }
     }
 
-    if(compareIds.length>=2){
-      console.warn("getMobile if 2 or more"+id1+" - "+id2+" - "+id3);
+    if (compareIds.length >= 2) {
+      console.warn("getMobile if 2 or more" + id1 + " - " + id2 + " - " + id3);
       getMobile(
         {
           id1,
@@ -77,15 +77,15 @@ export default function Compare(props) {
         }
       );
     }
-    
-      
-    
 
 
-  }, [mobileIds.length,mobiles.length]);
 
 
-  
+
+  }, [mobileIds.length, mobiles.length]);
+
+
+
 
 
   async function getMobile(
@@ -112,16 +112,11 @@ export default function Compare(props) {
 
   }
 
-  if(mobiles.length>=2 && mobileOne && mobileTwo){
+  if (mobiles.length >= 2 && mobileOne && mobileTwo) {
     return (
-      <>
-      {/* {JSON.stringify(mobileOne)}
-      <br/>
-      {JSON.stringify(mobileTwo)}
-      <br/>
-      {JSON.stringify(mobileThree)} */}
-      <CompareMobile mobileOne={mobileOne} mobileTwo={mobileTwo} mobileThree={mobileThree} size={mobiles.length}/>
-      </>
+
+      <CompareMobile mobileOne={mobileOne} mobileTwo={mobileTwo} mobileThree={mobileThree} size={mobiles.length} />
+
     );
   }
 
@@ -129,18 +124,18 @@ export default function Compare(props) {
 
 
   return (
-    <>
-   <div class="d-flex justify-content-center" >
-                      <Spinner animation="grow" variant="primary" />
-                      <Spinner animation="grow" variant="secondary" />
-                      <Spinner animation="grow" variant="success" />
-                      <Spinner animation="grow" variant="danger" />
-                      <Spinner animation="grow" variant="warning" />
-                      <Spinner animation="grow" variant="info" />
-                      <Spinner animation="grow" variant="dark" />
-                    </div>
 
-    </>
+    <div class="d-flex justify-content-center" >
+      <Spinner animation="grow" variant="primary" />
+      <Spinner animation="grow" variant="secondary" />
+      <Spinner animation="grow" variant="success" />
+      <Spinner animation="grow" variant="danger" />
+      <Spinner animation="grow" variant="warning" />
+      <Spinner animation="grow" variant="info" />
+      <Spinner animation="grow" variant="dark" />
+    </div>
+
+
 
   );
 }

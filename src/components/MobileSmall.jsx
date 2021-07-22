@@ -6,7 +6,7 @@ export default function MobileSmall(props) {
     const { mobile } = props;
 
     return (
-        <>
+        
             <span class=" obj ps-2 pe-2 my-2 overflow-hidden">
                 <div class="card p-1" style={{ width: "140px", height: "290px" }} >
                     < div className="card-body">
@@ -28,7 +28,7 @@ export default function MobileSmall(props) {
 
                 </div>
             </span>
-        </>
+       
 
     );
 }

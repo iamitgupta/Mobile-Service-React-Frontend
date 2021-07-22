@@ -143,7 +143,7 @@ export default function CompareModal({ compareML, mobileIdManager }) {
     }
 
     return (
-        <>
+        <div>
 
             <div class="fixed-bottom bottom-0 end-0">
                 <div class="position-fixed bottom-0 end-0 mb-2 ms-4" >
@@ -229,7 +229,7 @@ export default function CompareModal({ compareML, mobileIdManager }) {
                 </div>
             </div>
 
-        </>
+        </div>
 
     );
 }

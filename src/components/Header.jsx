@@ -36,7 +36,7 @@ export default function Header() {
 
 
   return (
-    <>
+    <div>
 
       <div class="fixed-top">
 
@@ -86,6 +86,6 @@ export default function Header() {
 
 
 
-    </>
+    </div>
   );
 }

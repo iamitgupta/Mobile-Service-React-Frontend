@@ -1,5 +1,5 @@
-import { SortAscendingOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
+import { Form } from 'react-bootstrap';
 
 
 export default function SortBy({ setSortML }) {
@@ -18,8 +18,8 @@ export default function SortBy({ setSortML }) {
 
 
     return (
-        <>
-            <select class="btn btn-light float-end" value={sortTemp} onChange={sortChangeTemp} >
+        <div>
+            <select class="btn btn-light float-end mb-1"  value={sortTemp} onChange={sortChangeTemp} >
                 <option name="sort">Sort By</option>
                 <option name="sort">Price Low to High</option>
                 <option name="sort">Price Hight to Low</option>
@@ -29,7 +29,10 @@ export default function SortBy({ setSortML }) {
             </select>
 
 
-        </>
+
+
+
+        </div>
 
     );
 }

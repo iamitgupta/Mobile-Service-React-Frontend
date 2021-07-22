@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { getSuggestions } from '../actions/mobileActions';
-import { AutoComplete, Icon, Input } from "antd";
+import { AutoComplete,  Input } from "antd";
 import "antd/dist/antd.css";
 import { SearchOutlined } from '@ant-design/icons';
-import { Redirect } from 'react-router-dom';
+import api from '../services/api';
 
 const SearchBar = () => {
   const [title, setTitle] = useState("");
-
-
-  const dispatch = useDispatch();
-  const suggestions = useSelector((state) => state.mobile.suggestions);
+  const [suggestions, setSuggestions] = useState();
   const history = useHistory();
 
   const active = true;
@@ -22,10 +17,26 @@ const SearchBar = () => {
 
 
   useEffect(() => {
-    dispatch(getSuggestions(title));
+    getSuggestions(title);
     console.warn("getSuggestions : " + suggestions);
 
   }, [title]);
+
+
+  async function getSuggestions(title) {
+    try {
+        const query = `suggestion?title=${title}`;
+        // console.warn("Query : " + query);
+        const response = await api.get(query);
+
+        setSuggestions(response.data);
+        // console.log("suggestions api call : " + response.data);
+
+    } catch (error) {
+        console.error(error);
+    }
+
+}
 
 
   function change(value) {
@@ -57,7 +68,7 @@ const SearchBar = () => {
 
 
   return (
-    <>
+   
       <AutoComplete
         dataSource={suggestions}
         style={{ width: "80vw" }}
@@ -69,11 +80,6 @@ const SearchBar = () => {
       >
         <Input suffix={<SearchOutlined />} />
       </AutoComplete>
-
-
-
-    </>
-
   );
 }
 

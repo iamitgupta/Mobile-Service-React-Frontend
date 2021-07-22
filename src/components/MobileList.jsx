@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import Mobile from './Mobile';
 import queryString from 'query-string';
-import Filter from './Filter';
-
 import InfiniteScroll from 'react-infinite-scroll-component';
 import api from '../services/api';
 import { Row, Col, Spinner, Toast } from 'react-bootstrap';
 import SortBy from './SortBy';
 import { FilterFilled } from '@ant-design/icons';
+import Filter from './Filter'
 
 import CompareModal from './CompareModal'
+
 
 
 
@@ -27,13 +27,14 @@ const MobileList = (props) => {
   const [hasMoreData, sethasMoreData] = useState(true);
 
 
-  console.log("Data from URL : ")
-  console.log(filterdata);
+  // console.log("Data from URL : ")
+  // console.log(filterdata);
 
   const [page, setPage] = useState(0);
 
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setPage(0);
     // setSearch(filterdata.search);
     // console.warn("data to filter : " + brand + " : " + search + " : " + upcoming);
@@ -107,10 +108,10 @@ const MobileList = (props) => {
   ) {
     try {
       const query = `mobileservice?brand=${brand}&upcoming=${upcoming}&rearCamera=${rearCamera}&frontCamera=${frontCamera}&display=${display}&screenSize=${screenSize}&ram=${ram}&os=${os}&inbuiltMemory=${inbuiltMemory}&battery=${battery}&cpu=${cpu}&priceLow=${priceLow}&priceHigh=${priceHigh}&search=${search}&sort=${sort}&page=${page}`;
-      console.warn("Query : " + query);
+      // console.warn("Query : " + query);
       const response = await api.get(query);
-      console.warn("api response mobilelist");
-      console.warn(response);
+      // console.warn("api response mobilelist");
+      // console.warn(response);
       if (response.data.length > 0) {
         setMobiles([...mobiles, ...response.data]);
         console.warn(mobiles);
@@ -124,7 +125,7 @@ const MobileList = (props) => {
         sethasMoreData(false);
         // console.warn("No hashmore : " + hasMoreData);
       }
-      console.warn("Mobile api call");
+      // console.warn("Mobile api call");
 
       // console.log("Mobiles api call : " + response.data);
     } catch (error) {
@@ -150,8 +151,8 @@ const MobileList = (props) => {
     }
 
   }
-  console.warn("Rendering....");
-  console.warn(mobiles);
+  // console.warn("Rendering....");
+  // console.warn(mobiles);
   // console.warn("More data: " + hasMoreData);
 
 
@@ -207,17 +208,17 @@ const MobileList = (props) => {
 
   return (
 
-    <>
+    <div>
       <CompareModal compareML={compareML} mobileIdManager={mobileIdManager}></CompareModal>
 
 
 
 
-      <div class="container-fluid py-3" >
-        <div class="row">
-          <div class="col">
+      <div className="container-fluid" >
+        <div className="row">
+          <div className="col">
             {window.screen.width <= 1280 ?
-              <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button type="button" className="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Filter  <FilterFilled />
               </button>
               :
@@ -225,8 +226,8 @@ const MobileList = (props) => {
 
             }
           </div>
-          <div class="col float-end">
-            <SortBy setSortML={setSortML} class="float-right"></SortBy>
+          <div className="col float-end">
+            <SortBy setSortML={setSortML} className="float-right"></SortBy>
           </div>
         </div>
 
@@ -244,19 +245,20 @@ const MobileList = (props) => {
 
 
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Filter</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Filter</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
+              <div className="modal-body">
                 <Filter sort={sortML} />
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Apply</button>
+              <div className="modal-footer">
+
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-primary" data-bs-dismiss="modal">Apply</button>
               </div>
             </div>
           </div>
@@ -274,8 +276,8 @@ const MobileList = (props) => {
 
 
 
-        <div class="row ">
-          <div class="col-lg-3">
+        <div className="row ">
+          <div className="col-lg-3">
 
             {window.screen.width >= 1280 ?
 
@@ -285,17 +287,17 @@ const MobileList = (props) => {
 
             }
           </div>
-          <div class="col-lg-9 ">
+          <div className="col-lg-9 ">
 
 
-            <ul class="list-group ">
+            <ul className="list-group ">
               {mobiles &&
                 <InfiniteScroll
                   dataLength={mobiles.length} //This is important field to render the next data
                   next={fetchMoreData}
                   hasMore={hasMoreData}
                   loader={
-                    <div class="d-flex justify-content-center" >
+                    <div className="d-flex justify-content-center" >
                       <Spinner animation="grow" variant="primary" />
                       <Spinner animation="grow" variant="secondary" />
                       <Spinner animation="grow" variant="success" />
@@ -323,8 +325,8 @@ const MobileList = (props) => {
 
       {/* floating window */}
 
-      <div class="fixed-bottom bottom-0 start-0">
-        <div class="position-fixed bottom-0 start-0 mb-2 ms-1" >
+      <div className="fixed-bottom bottom-0 start-0">
+        <div className="position-fixed bottom-0 start-0 mb-2 ms-1" >
           <Row>
             <Col xs={6}>
               <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
@@ -342,7 +344,7 @@ const MobileList = (props) => {
 
 
 
-    </>
+    </div>
 
   );
 };

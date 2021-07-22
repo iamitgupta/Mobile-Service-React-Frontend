@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Accordion, Card } from "react-bootstrap";
-import { useHistory } from 'react-router';
+import { Accordion, Card } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 
 
 
 
-export default function Filter({sort}) {
+
+export default function Filter({ sort }) {
 
     const history = useHistory();
     const params = new URLSearchParams();
@@ -15,31 +16,31 @@ export default function Filter({sort}) {
     function searchQuerySort() {
         let query = "";
         //date-> dateASC, dateDESC
-			//date-> priceASC, priceDESC
-			//date-> specScoreASC, specScoreDESC
-        if (sort!="Sort By") {
-           
-            if(sort=="Price Low to High"){
-                query="priceASC"
+        //date-> priceASC, priceDESC
+        //date-> specScoreASC, specScoreDESC
+        if (sort != "Sort By") {
+
+            if (sort == "Price Low to High") {
+                query = "priceASC"
             }
-            if(sort=="Price Hight to Low"){
-                query="priceDESC"
+            if (sort == "Price Hight to Low") {
+                query = "priceDESC"
             }
-            if(sort=="Newest First"){
-                query="dateDESC"
+            if (sort == "Newest First") {
+                query = "dateDESC"
             }
-            if(sort=="SpecScore Low to High"){
-                query="specScoreASC"
+            if (sort == "SpecScore Low to High") {
+                query = "specScoreASC"
             }
-            if(sort=="SpecScore High to Low"){
-                query="specScoreDESC"
+            if (sort == "SpecScore High to Low") {
+                query = "specScoreDESC"
             }
 
 
         }
         if (query) {
 
-            params.append("sort", query)   
+            params.append("sort", query)
         } else {
             // console.warn("sort nothing  selected");
             //delete query parameters
@@ -50,7 +51,7 @@ export default function Filter({sort}) {
 
     }
 
-    
+
 
     //price
 
@@ -67,12 +68,12 @@ export default function Filter({sort}) {
 
     function searchQueryPriceMin() {
         let query = "";
-        if (priceMin!="Min") {
-            query =priceMin;
+        if (priceMin != "Min") {
+            query = priceMin;
         }
         if (query) {
 
-            params.append("priceLow", query)   
+            params.append("priceLow", query)
         } else {
             // console.warn("priceLow Min  selected");
             //delete query parameters
@@ -85,12 +86,12 @@ export default function Filter({sort}) {
 
     function searchQueryPriceMax() {
         let query = "";
-        if (priceMax!="Max") {
-            query =priceMax;
+        if (priceMax != "Max") {
+            query = priceMax;
         }
         if (query) {
 
-            params.append("priceHigh", query)   
+            params.append("priceHigh", query)
         } else {
             // console.warn("priceHigh Max  selected");
             //delete query parameters
@@ -103,7 +104,7 @@ export default function Filter({sort}) {
 
 
 
-   
+
 
 
     //brands 
@@ -896,21 +897,20 @@ export default function Filter({sort}) {
         searchInbuiltMemory();
         searchQueryBattery();
         searchQueryCpu();
-searchQueryPriceMin();
-searchQueryPriceMax();
-searchQuerySort();
+        searchQueryPriceMin();
+        searchQueryPriceMax();
+        searchQuerySort();
 
         history.push({ search: params.toString() })
 
 
-    }, [available, brands, rearCamera, frontCamera, display, screenSize, ram, os, inbuiltMemory, battery, cpu,priceMin,priceMax, sort]);
+    }, [available, brands, rearCamera, frontCamera, display, screenSize, ram, os, inbuiltMemory, battery, cpu, priceMin, priceMax, sort]);
 
 
 
 
     return (
-        <>
-        
+        <div>
             {getPriceUI()}
             {getBrandUI()}
             {getFrontCameraUI()}
@@ -923,7 +923,7 @@ searchQuerySort();
             {getOsUI()}
             {getCpuUI()}
             {getAvalabilityUI()}
-        </>
+        </div>
 
     );
 
@@ -932,77 +932,76 @@ searchQuerySort();
 
     function getPriceUI() {
         return (
-            <>
+            <div>
 
-           
-           
-           <Accordion defaultActiveKey="0">
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
-                            Price
 
-                            
-                        </Accordion.Toggle>
 
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body class="m-2">
-            <div class="d-flex flex-row">
-              
-                <div  class="col dropdown ">
-                    
-                    <select class="btn btn-light" value={priceMin} onChange={priceMinChange}>
-                        <option  name="priceMin"> Min</option>
-                        <option  name="priceMin">3000</option>
-                        <option  name="priceMin">5000</option>
-                        <option  name="priceMin">6000</option>
-                        <option  name="priceMin">8000</option>
-                        <option  name="priceMin">10000</option>
-                        <option  name="priceMin">12000</option>
-                        <option  name="priceMin">15000</option>
-                        <option  name="priceMin">20000</option>
-                        <option  name="priceMin">25000</option>
-                        <option  name="priceMin">30000</option>
-                        <option  name="priceMin">35000</option>
-                        <option  name="priceMin">50000</option>
-                        <option  name="priceMin">70000</option>
-                        <option  name="priceMin">90000</option>
-                        <option  name="priceMin">100000</option>
-                        
-                    </select>
-                </div>
-                
+                <Accordion defaultActiveKey="0" >
 
-                <div class="col dropdown">
-                    <select class="btn btn-light" value={priceMax} onChange={priceMaxChange} >
-                        <option  name="priceMax"> Max</option>
-                        <option  name="priceMax">3000</option>
-                        <option  name="priceMax">5000</option>
-                        <option  name="priceMax">6000</option>
-                        <option  name="priceMax">8000</option>
-                        <option  name="priceMax">10000</option>
-                        <option  name="priceMax">12000</option>
-                        <option  name="priceMax">15000</option>
-                        <option  name="priceMax">20000</option>
-                        <option  name="priceMax">25000</option>
-                        <option  name="priceMax">30000</option>
-                        <option  name="priceMax">35000</option>
-                        <option  name="priceMax">50000</option>
-                        <option  name="priceMax">70000</option>
-                        <option  name="priceMax">90000</option>
-                        <option  name="priceMax">100000</option>
-                        
-                    </select>
-                </div>
+                    <Accordion.Item eventKey="0">
+                       <Accordion.Header>Price</Accordion.Header>
 
-            </div>
-            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
+
+                        <Accordion.Body>
+                            <div className="d-flex flex-row">
+
+                                <div className="col dropdown ">
+
+                                    <select className="btn btn-light" value={priceMin} onChange={priceMinChange}>
+                                        <option name="priceMin"> Min</option>
+                                        <option name="priceMin">3000</option>
+                                        <option name="priceMin">5000</option>
+                                        <option name="priceMin">6000</option>
+                                        <option name="priceMin">8000</option>
+                                        <option name="priceMin">10000</option>
+                                        <option name="priceMin">12000</option>
+                                        <option name="priceMin">15000</option>
+                                        <option name="priceMin">20000</option>
+                                        <option name="priceMin">25000</option>
+                                        <option name="priceMin">30000</option>
+                                        <option name="priceMin">35000</option>
+                                        <option name="priceMin">50000</option>
+                                        <option name="priceMin">70000</option>
+                                        <option name="priceMin">90000</option>
+                                        <option name="priceMin">100000</option>
+
+                                    </select>
+                                </div>
+
+
+                                <div className="col dropdown">
+                                    <select className="btn btn-light" value={priceMax} onChange={priceMaxChange} >
+                                        <option name="priceMax"> Max</option>
+                                        <option name="priceMax">3000</option>
+                                        <option name="priceMax">5000</option>
+                                        <option name="priceMax">6000</option>
+                                        <option name="priceMax">8000</option>
+                                        <option name="priceMax">10000</option>
+                                        <option name="priceMax">12000</option>
+                                        <option name="priceMax">15000</option>
+                                        <option name="priceMax">20000</option>
+                                        <option name="priceMax">25000</option>
+                                        <option name="priceMax">30000</option>
+                                        <option name="priceMax">35000</option>
+                                        <option name="priceMax">50000</option>
+                                        <option name="priceMax">70000</option>
+                                        <option name="priceMax">90000</option>
+                                        <option name="priceMax">100000</option>
+
+                                    </select>
+                                </div>
+
+                            </div>
+                       </Accordion.Body> </Accordion.Item>
+                   
+
                 </Accordion>
 
-               
 
-            </>
+
+
+
+            </div>
 
         );
 
@@ -1016,75 +1015,77 @@ searchQuerySort();
 
 
                 <Accordion defaultActiveKey="0">
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
+
+                    <Accordion.Item eventKey="0">
+                        <Accordion.Header>
                             Brands
-                        </Accordion.Toggle>
-
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body>
+                        </Accordion.Header>
 
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={apple} checked={apple} onChange={brandChange} name="apple" />
-                                    <span class="form-check-label">
-                                        Apple
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={samsung} onChange={brandChange} name="samsung" />
-                                    <span class="form-check-label">
-                                        Samsung
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={realme} onChange={brandChange} name="realme" />
-                                    <span class="form-check-label">
-                                        Realme
-                                    </span>
-                                </label>
-
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={poco} onChange={brandChange} name="poco" />
-                                    <span class="form-check-label">
-                                        POCO
-                                    </span>
-                                </label>
+                        <Accordion.Body>
 
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={xiaomi} onChange={brandChange} name="xiaomi" />
-                                    <span class="form-check-label">
-                                        Xiaomi
-                                    </span>
-                                </label>
+                            <label className="form-check">
+                                <input className="form-check-input" type="checkbox" value={apple} checked={apple} onChange={brandChange} name="apple" />
+                                <span className="form-check-label">
+                                    Apple
+                                </span>
+                            </label>
+                            <label className="form-check">
+                                <input className="form-check-input" type="checkbox" value="" checked={samsung} onChange={brandChange} name="samsung" />
+                                <span className="form-check-label">
+                                    Samsung
+                                </span>
+                            </label>
+                            <label className="form-check">
+                                <input className="form-check-input" type="checkbox" value="" checked={realme} onChange={brandChange} name="realme" />
+                                <span className="form-check-label">
+                                    Realme
+                                </span>
+                            </label>
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={oppo} onChange={brandChange} name="oppo" />
-                                    <span class="form-check-label">
-                                        OPPO
-                                    </span>
-                                </label>
-
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={vivo} onChange={brandChange} name="vivo" />
-                                    <span class="form-check-label">
-                                        VIVO
-                                    </span>
-                                </label>
-
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={oneplus} onChange={brandChange} name="oneplus" />
-                                    <span class="form-check-label">
-                                        OnePlus
-                                    </span>
-                                </label>
+                            <label className="form-check">
+                                <input className="form-check-input" type="checkbox" value="" checked={poco} onChange={brandChange} name="poco" />
+                                <span className="form-check-label">
+                                    POCO
+                                </span>
+                            </label>
 
 
+                            <label className="form-check">
+                                <input className="form-check-input" type="checkbox" value="" checked={xiaomi} onChange={brandChange} name="xiaomi" />
+                                <span className="form-check-label">
+                                    Xiaomi
+                                </span>
+                            </label>
 
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
+                            <label className="form-check">
+                                <input className="form-check-input" type="checkbox" value="" checked={oppo} onChange={brandChange} name="oppo" />
+                                <span className="form-check-label">
+                                    OPPO
+                                </span>
+                            </label>
+
+                            <label className="form-check">
+                                <input className="form-check-input" type="checkbox" value="" checked={vivo} onChange={brandChange} name="vivo" />
+                                <span className="form-check-label">
+                                    VIVO
+                                </span>
+                            </label>
+
+                            <label className="form-check">
+                                <input className="form-check-input" type="checkbox" value="" checked={oneplus} onChange={brandChange} name="oneplus" />
+                                <span className="form-check-label">
+                                    OnePlus
+                                </span>
+                            </label>
+
+
+
+                       </Accordion.Body> </Accordion.Item>
+
+                   
+
                 </Accordion>
 
 
@@ -1100,33 +1101,33 @@ searchQuerySort();
 
 
                 <Accordion defaultActiveKey="1">
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
-                            Availability
-                        </Accordion.Toggle>
 
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body>
+                    <Accordion.Item> <Accordion.Header>
+                        Availability
+                    </Accordion.Header>
 
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={upcoming} checked={upcoming} onChange={availabilityChange} name="upcoming" />
-                                    <span class="form-check-label">
-                                        Upcoming
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={launched} checked={launched} onChange={availabilityChange} name="launched" />
-                                    <span class="form-check-label">
-                                        Launched
-                                    </span>
-                                </label>
+                    <Accordion.Body>
+
+
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={upcoming} checked={upcoming} onChange={availabilityChange} name="upcoming" />
+                            <span className="form-check-label">
+                                Upcoming
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={launched} checked={launched} onChange={availabilityChange} name="launched" />
+                            <span className="form-check-label">
+                                Launched
+                            </span>
+                        </label>
 
 
 
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
+                   </Accordion.Body> </Accordion.Item>
+
+
                 </Accordion>
 
 
@@ -1143,58 +1144,58 @@ searchQuerySort();
 
 
                 <Accordion defaultActiveKey="1">
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
-                            Rear Camera
-                        </Accordion.Toggle>
 
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body>
+                    <Accordion.Item> <Accordion.Header>
+                        Rear Camera
+                    </Accordion.Header>
 
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={fiveRC} checked={fiveRC} onChange={rearCameraChange} name="fiveRC" />
-                                    <span class="form-check-label">
-                                        5 MP & Above
-                                    </span>
-                                </label>
+                    <Accordion.Body>
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={thirteenRC} onChange={rearCameraChange} name="thirteenRC" />
-                                    <span class="form-check-label">
-                                        13 MP & Above
-                                    </span>
-                                </label>
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={sixteenRC} onChange={rearCameraChange} name="sixteenRC" />
-                                    <span class="form-check-label">
-                                        16 MP & Above
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={twentyRC} onChange={rearCameraChange} name="twentyRC" />
-                                    <span class="form-check-label">
-                                        20 MP & ABOVE
-                                    </span>
-                                </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={fiveRC} checked={fiveRC} onChange={rearCameraChange} name="fiveRC" />
+                            <span className="form-check-label">
+                                5 MP & Above
+                            </span>
+                        </label>
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={fourtyeightRC} onChange={rearCameraChange} name="fourtyeightRC" />
-                                    <span class="form-check-label">
-                                        48 MP & ABOVE
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={sixtyfourRC} onChange={rearCameraChange} name="sixtyfourRC" />
-                                    <span class="form-check-label">
-                                        64 MP & ABOVE
-                                    </span>
-                                </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={thirteenRC} onChange={rearCameraChange} name="thirteenRC" />
+                            <span className="form-check-label">
+                                13 MP & Above
+                            </span>
+                        </label>
 
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={sixteenRC} onChange={rearCameraChange} name="sixteenRC" />
+                            <span className="form-check-label">
+                                16 MP & Above
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={twentyRC} onChange={rearCameraChange} name="twentyRC" />
+                            <span className="form-check-label">
+                                20 MP & ABOVE
+                            </span>
+                        </label>
+
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={fourtyeightRC} onChange={rearCameraChange} name="fourtyeightRC" />
+                            <span className="form-check-label">
+                                48 MP & ABOVE
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={sixtyfourRC} onChange={rearCameraChange} name="sixtyfourRC" />
+                            <span className="form-check-label">
+                                64 MP & ABOVE
+                            </span>
+                        </label>
+
+                   </Accordion.Body> </Accordion.Item>
+
+
                 </Accordion>
 
 
@@ -1210,51 +1211,51 @@ searchQuerySort();
 
 
                 <Accordion defaultActiveKey="1">
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
-                            Front Camera
-                        </Accordion.Toggle>
 
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body>
+                    <Accordion.Item> <Accordion.Header>
+                        Front Camera
+                    </Accordion.Header>
 
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={fiveFC} checked={fiveFC} onChange={frontCameraChange} name="fiveFC" />
-                                    <span class="form-check-label">
-                                        5 MP & Above
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={eightFC} checked={eightFC} onChange={frontCameraChange} name="eightFC" />
-                                    <span class="form-check-label">
-                                        8 MP & Above
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={twelveFC} onChange={frontCameraChange} name="twelveFC" />
-                                    <span class="form-check-label">
-                                        12 MP & Above
-                                    </span>
-                                </label>
-
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={sixteenFC} onChange={frontCameraChange} name="sixteenFC" />
-                                    <span class="form-check-label">
-                                        16 MP & Above
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={twentyFC} onChange={frontCameraChange} name="twentyFC" />
-                                    <span class="form-check-label">
-                                        20 MP & ABOVE
-                                    </span>
-                                </label>
+                    <Accordion.Body>
 
 
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={fiveFC} checked={fiveFC} onChange={frontCameraChange} name="fiveFC" />
+                            <span className="form-check-label">
+                                5 MP & Above
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={eightFC} checked={eightFC} onChange={frontCameraChange} name="eightFC" />
+                            <span className="form-check-label">
+                                8 MP & Above
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={twelveFC} onChange={frontCameraChange} name="twelveFC" />
+                            <span className="form-check-label">
+                                12 MP & Above
+                            </span>
+                        </label>
+
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={sixteenFC} onChange={frontCameraChange} name="sixteenFC" />
+                            <span className="form-check-label">
+                                16 MP & Above
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={twentyFC} onChange={frontCameraChange} name="twentyFC" />
+                            <span className="form-check-label">
+                                20 MP & ABOVE
+                            </span>
+                        </label>
+
+
+                   </Accordion.Body> </Accordion.Item>
+
+
                 </Accordion>
 
 
@@ -1271,33 +1272,33 @@ searchQuerySort();
 
 
                 <Accordion defaultActiveKey="1">
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
-                            Display
-                        </Accordion.Toggle>
 
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body>
+                    <Accordion.Item> <Accordion.Header>
+                        Display
+                    </Accordion.Header>
 
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={amoled} checked={amoled} onChange={displayChange} name="amoled" />
-                                    <span class="form-check-label">
-                                        Amoled
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={ips} checked={ips} onChange={displayChange} name="ips" />
-                                    <span class="form-check-label">
-                                        IPS
-                                    </span>
-                                </label>
+                    <Accordion.Body>
+
+
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={amoled} checked={amoled} onChange={displayChange} name="amoled" />
+                            <span className="form-check-label">
+                                Amoled
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={ips} checked={ips} onChange={displayChange} name="ips" />
+                            <span className="form-check-label">
+                                IPS
+                            </span>
+                        </label>
 
 
 
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
+                   </Accordion.Body> </Accordion.Item>
+
+
                 </Accordion>
 
 
@@ -1315,49 +1316,49 @@ searchQuerySort();
 
 
                 <Accordion defaultActiveKey="1">
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
-                            Screen Size
-                        </Accordion.Toggle>
 
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body>
+                    <Accordion.Item> <Accordion.Header>
+                        Screen Size
+                    </Accordion.Header>
 
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={fourBelowSC} checked={fourBelowSC} onChange={screenSizeChange} name="fourBelowSC" />
-                                    <span class="form-check-label">
-                                        4 inch & Below
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={fourToFiveSC} onChange={screenSizeChange} name="fourToFiveSC" />
-                                    <span class="form-check-label">
-                                        4 inch - 5 inch
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={fiveToSixSC} onChange={screenSizeChange} name="fiveToSixSC" />
-                                    <span class="form-check-label">
-                                        5 inch - 6 inch
-                                    </span>
-                                </label>
-
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={sixAboveSC} onChange={screenSizeChange} name="sixAboveSC" />
-                                    <span class="form-check-label">
-                                        6 inch & Above
-                                    </span>
-                                </label>
+                    <Accordion.Body>
 
 
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={fourBelowSC} checked={fourBelowSC} onChange={screenSizeChange} name="fourBelowSC" />
+                            <span className="form-check-label">
+                                4 inch & Below
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={fourToFiveSC} onChange={screenSizeChange} name="fourToFiveSC" />
+                            <span className="form-check-label">
+                                4 inch - 5 inch
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={fiveToSixSC} onChange={screenSizeChange} name="fiveToSixSC" />
+                            <span className="form-check-label">
+                                5 inch - 6 inch
+                            </span>
+                        </label>
+
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={sixAboveSC} onChange={screenSizeChange} name="sixAboveSC" />
+                            <span className="form-check-label">
+                                6 inch & Above
+                            </span>
+                        </label>
 
 
 
 
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
+
+
+                   </Accordion.Body> </Accordion.Item>
+
+
                 </Accordion>
 
 
@@ -1375,51 +1376,51 @@ searchQuerySort();
 
 
                 <Accordion defaultActiveKey="1">
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
-                            RAM
-                        </Accordion.Toggle>
 
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body>
+                    <Accordion.Item> <Accordion.Header>
+                        RAM
+                    </Accordion.Header>
 
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={twoRAM} checked={twoRAM} onChange={ramChange} name="twoRAM" />
-                                    <span class="form-check-label">
-                                        2 GB & Above
-                                    </span>
-                                </label>
+                    <Accordion.Body>
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={threeRAM} checked={threeRAM} onChange={ramChange} name="threeRAM" />
-                                    <span class="form-check-label">
-                                        3 GB & Above
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={fourRAM} checked={fourRAM} onChange={ramChange} name="fourRAM" />
-                                    <span class="form-check-label">
-                                        4 GB & Above
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={sixRAM} onChange={ramChange} name="sixRAM" />
-                                    <span class="form-check-label">
-                                        6 GB & Above
-                                    </span>
-                                </label>
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={eightRAM} onChange={ramChange} name="eightRAM" />
-                                    <span class="form-check-label">
-                                        8 GB & Above
-                                    </span>
-                                </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={twoRAM} checked={twoRAM} onChange={ramChange} name="twoRAM" />
+                            <span className="form-check-label">
+                                2 GB & Above
+                            </span>
+                        </label>
 
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={threeRAM} checked={threeRAM} onChange={ramChange} name="threeRAM" />
+                            <span className="form-check-label">
+                                3 GB & Above
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={fourRAM} checked={fourRAM} onChange={ramChange} name="fourRAM" />
+                            <span className="form-check-label">
+                                4 GB & Above
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={sixRAM} onChange={ramChange} name="sixRAM" />
+                            <span className="form-check-label">
+                                6 GB & Above
+                            </span>
+                        </label>
+
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={eightRAM} onChange={ramChange} name="eightRAM" />
+                            <span className="form-check-label">
+                                8 GB & Above
+                            </span>
+                        </label>
+
+                   </Accordion.Body> </Accordion.Item>
+
+
                 </Accordion>
 
 
@@ -1437,33 +1438,33 @@ searchQuerySort();
 
 
                 <Accordion defaultActiveKey="1">
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
-                            Operating System
-                        </Accordion.Toggle>
 
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body>
+                    <Accordion.Item> <Accordion.Header>
+                        Operating System
+                    </Accordion.Header>
 
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={android} checked={android} onChange={osChange} name="android" />
-                                    <span class="form-check-label">
-                                        Android
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={ios} checked={ios} onChange={osChange} name="ios" />
-                                    <span class="form-check-label">
-                                        iOS
-                                    </span>
-                                </label>
+                    <Accordion.Body>
+
+
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={android} checked={android} onChange={osChange} name="android" />
+                            <span className="form-check-label">
+                                Android
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={ios} checked={ios} onChange={osChange} name="ios" />
+                            <span className="form-check-label">
+                                iOS
+                            </span>
+                        </label>
 
 
 
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
+                   </Accordion.Body> </Accordion.Item>
+
+
                 </Accordion>
 
 
@@ -1480,46 +1481,46 @@ searchQuerySort();
 
 
                 <Accordion defaultActiveKey="1">
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
-                            Battery
-                        </Accordion.Toggle>
 
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body>
+                    <Accordion.Item> <Accordion.Header>
+                        Battery
+                    </Accordion.Header>
 
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={twentyfiveB} checked={twentyfiveB} onChange={batteryChange} name="twentyfiveB" />
-                                    <span class="form-check-label">
-                                        2500 mAH & Above
-                                    </span>
-                                </label>
-
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={thirtyB} checked={thirtyB} onChange={batteryChange} name="thirtyB" />
-                                    <span class="form-check-label">
-                                        3000 mAH & Above
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={fourtyB} checked={fourtyB} onChange={batteryChange} name="fourtyB" />
-                                    <span class="form-check-label">
-                                        4000 mAH & Above
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={fiftyB} checked={fiftyB} onChange={batteryChange} name="fiftyB" />
-                                    <span class="form-check-label">
-                                        5000 mAH & Above
-                                    </span>
-                                </label>
+                    <Accordion.Body>
 
 
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={twentyfiveB} checked={twentyfiveB} onChange={batteryChange} name="twentyfiveB" />
+                            <span className="form-check-label">
+                                2500 mAH & Above
+                            </span>
+                        </label>
 
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={thirtyB} checked={thirtyB} onChange={batteryChange} name="thirtyB" />
+                            <span className="form-check-label">
+                                3000 mAH & Above
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={fourtyB} checked={fourtyB} onChange={batteryChange} name="fourtyB" />
+                            <span className="form-check-label">
+                                4000 mAH & Above
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={fiftyB} checked={fiftyB} onChange={batteryChange} name="fiftyB" />
+                            <span className="form-check-label">
+                                5000 mAH & Above
+                            </span>
+                        </label>
+
+
+
+                   </Accordion.Body> </Accordion.Item>
+
+
                 </Accordion>
 
 
@@ -1535,46 +1536,46 @@ searchQuerySort();
 
 
                 <Accordion defaultActiveKey="1">
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
-                            Inbuilt Memory
-                        </Accordion.Toggle>
 
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body>
+                    <Accordion.Item> <Accordion.Header>
+                        Inbuilt Memory
+                    </Accordion.Header>
 
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={thirtytwoIM} checked={thirtytwoIM} onChange={inbuiltMemoryChange} name="thirtytwoIM" />
-                                    <span class="form-check-label">
-                                        32 GB & Above
-                                    </span>
-                                </label>
-
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={sixtyfourIM} checked={sixtyfourIM} onChange={inbuiltMemoryChange} name="sixtyfourIM" />
-                                    <span class="form-check-label">
-                                        64 GB & Above
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={onetwentyeightIM} checked={onetwentyeightIM} onChange={inbuiltMemoryChange} name="onetwentyeightIM" />
-                                    <span class="form-check-label">
-                                        128 GB & Above
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={twofiftysixIM} checked={twofiftysixIM} onChange={inbuiltMemoryChange} name="twofiftysixIM" />
-                                    <span class="form-check-label">
-                                        256 GB & Above
-                                    </span>
-                                </label>
+                    <Accordion.Body>
 
 
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={thirtytwoIM} checked={thirtytwoIM} onChange={inbuiltMemoryChange} name="thirtytwoIM" />
+                            <span className="form-check-label">
+                                32 GB & Above
+                            </span>
+                        </label>
 
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={sixtyfourIM} checked={sixtyfourIM} onChange={inbuiltMemoryChange} name="sixtyfourIM" />
+                            <span className="form-check-label">
+                                64 GB & Above
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={onetwentyeightIM} checked={onetwentyeightIM} onChange={inbuiltMemoryChange} name="onetwentyeightIM" />
+                            <span className="form-check-label">
+                                128 GB & Above
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={twofiftysixIM} checked={twofiftysixIM} onChange={inbuiltMemoryChange} name="twofiftysixIM" />
+                            <span className="form-check-label">
+                                256 GB & Above
+                            </span>
+                        </label>
+
+
+
+                   </Accordion.Body> </Accordion.Item>
+
+
                 </Accordion>
 
 
@@ -1591,62 +1592,62 @@ searchQuerySort();
 
 
                 <Accordion defaultActiveKey="1">
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
-                            CPU Manufacturer
-                        </Accordion.Toggle>
 
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body>
+                    <Accordion.Item> <Accordion.Header>
+                        CPU Manufacturer
+                    </Accordion.Header>
 
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={appleCPU} checked={appleCPU} onChange={cpuChange} name="appleCPU" />
-                                    <span class="form-check-label">
-                                        Apple
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={qualcommCPU} onChange={cpuChange} name="qualcommCPU" />
-                                    <span class="form-check-label">
-                                        Qualcomm
-                                    </span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={mediatekCPU} onChange={cpuChange} name="mediatekCPU" />
-                                    <span class="form-check-label">
-                                        MediaTek
-                                    </span>
-                                </label>
-
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={samsungCPU} onChange={cpuChange} name="samsungCPU" />
-                                    <span class="form-check-label">
-                                        Samsung
-                                    </span>
-                                </label>
+                    <Accordion.Body>
 
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={hisiliconCPU} onChange={cpuChange} name="hisiliconCPU" />
-                                    <span class="form-check-label">
-                                        HiSilicon
-                                    </span>
-                                </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value={appleCPU} checked={appleCPU} onChange={cpuChange} name="appleCPU" />
+                            <span className="form-check-label">
+                                Apple
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={qualcommCPU} onChange={cpuChange} name="qualcommCPU" />
+                            <span className="form-check-label">
+                                Qualcomm
+                            </span>
+                        </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={mediatekCPU} onChange={cpuChange} name="mediatekCPU" />
+                            <span className="form-check-label">
+                                MediaTek
+                            </span>
+                        </label>
 
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" checked={othersCPU} onChange={cpuChange} name="othersCPU" />
-                                    <span class="form-check-label">
-                                        Others
-                                    </span>
-                                </label>
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={samsungCPU} onChange={cpuChange} name="samsungCPU" />
+                            <span className="form-check-label">
+                                Samsung
+                            </span>
+                        </label>
+
+
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={hisiliconCPU} onChange={cpuChange} name="hisiliconCPU" />
+                            <span className="form-check-label">
+                                HiSilicon
+                            </span>
+                        </label>
+
+                        <label className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" checked={othersCPU} onChange={cpuChange} name="othersCPU" />
+                            <span className="form-check-label">
+                                Others
+                            </span>
+                        </label>
 
 
 
 
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
+                   </Accordion.Body> </Accordion.Item>
+
+
                 </Accordion>
 
 

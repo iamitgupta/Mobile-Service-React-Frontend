@@ -70,7 +70,7 @@ export default function Mobile({ mobile, mobileIdManager }) {
                                     <span class="badge bg-warning text-dark">Upcoming</span>
                                         
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                             </div>
                         </div>
@@ -87,16 +87,9 @@ export default function Mobile({ mobile, mobileIdManager }) {
             </li>
 
 
+            
+
         </div>
-
-
-
-
-
-
-
-
-
 
     );
 }

@@ -1,17 +1,15 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router';
-
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import MemoryIcon from '@material-ui/icons/Memory';
 import SimCardIcon from '@material-ui/icons/SimCard';
 import Battery80Icon from '@material-ui/icons/Battery80';
 import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 import CameraFrontIcon from '@material-ui/icons/CameraFront';
-import { getMobile } from '../actions/mobileActions';
 import { Spinner } from 'react-bootstrap';
 import { Carousel } from 'react-bootstrap';
 import SimilarMobiles from './SimilarMobiles';
+import api from '../services/api';
 
 
 
@@ -25,15 +23,29 @@ export default function MobileDetails() {
 
     console.warn("Mobile ID : " + mobileId);
 
-    const dispatch = useDispatch();
-    const mobile = useSelector((state) => state.mobile.mobile);
+    const [mobile, setMobile] = useState();
 
     useEffect(() => {
-        window.scrollTo(0,0);
-        dispatch(getMobile(
-            mobileId
-        ));
+        window.scrollTo(0, 0);
+        getMobile(
+            mobileId);
     }, [mobileId]);
+
+    async function getMobile(mobileId) {
+        // console.warn("====getMobiles====");
+        try {
+            const query = `getmobile/${mobileId}`;
+            // console.warn("Query : " + query);
+            const response = await api.get(query);
+
+            setMobile(response.data);
+            // console.log("Mobiles api call : " + response.data);
+
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
 
 
 
@@ -60,15 +72,7 @@ export default function MobileDetails() {
                                 <div class="col-sm-2 d-flex justify-content-center overflow-hidden">
 
                                     {/* <img src={mobile.images[0]} alt="Generic placeholder image" class="order-1 order-lg-2" height="180px" /> */}
-
-
-                                    <Carousel slide={false}
-
-
-                                    >
-
-
-
+                                    <Carousel slide={false}>
                                         {mobile.images.map((img => {
                                             return (
                                                 <Carousel.Item interval={2000}>
@@ -76,21 +80,15 @@ export default function MobileDetails() {
                                                         className="d-block w-100"
                                                         src={img}
                                                         alt="First slide"
-
                                                         height="230px"
-
-
                                                     />
 
                                                 </Carousel.Item>
                                             );
-
-
                                         }))}
 
-
-
                                     </Carousel>
+
 
 
 
@@ -130,7 +128,7 @@ export default function MobileDetails() {
                                             <span class="badge bg-warning text-dark">Upcoming</span>
 
                                             :
-                                            <></>
+                                            <div></div>
                                         }
                                     </div>
                                 </div>
@@ -151,7 +149,7 @@ export default function MobileDetails() {
                         <table class="table table-hover table-striped table-striped">
                             <thead class="thead bg-primary text-light">
                                 <tr>
-                                    <th scope="col" colspan="2">General</th>
+                                    <th scope="col" colSpan="2">General</th>
 
                                 </tr>
                             </thead>
@@ -164,7 +162,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.general.dualSim != null ?
                                     <tr>
@@ -174,7 +172,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
                                 {mobile.general.simSize != null ?
@@ -185,7 +183,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
                                 {mobile.general.deviceType != null ?
@@ -196,7 +194,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.general.releaseDate != null ?
                                     <tr>
@@ -206,7 +204,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -218,7 +216,7 @@ export default function MobileDetails() {
                         <table class="table table-hover table-striped">
                             <thead class="thead bg-primary text-light">
                                 <tr>
-                                    <th scope="col" colspan="2">Camera</th>
+                                    <th scope="col" colSpan="2">Camera</th>
 
                                 </tr>
                             </thead>
@@ -231,7 +229,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.camera.frontCamera != null ?
                                     <tr>
@@ -241,7 +239,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
                                 {mobile.camera.features != null ?
@@ -252,7 +250,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.camera.videoRecording != null ?
                                     <tr>
@@ -262,7 +260,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.camera.frontVideoRecording != null ?
                                     <tr>
@@ -272,7 +270,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
                                 {mobile.camera.flash != null ?
@@ -283,7 +281,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -293,7 +291,7 @@ export default function MobileDetails() {
                         <table class="table table-hover table-striped">
                             <thead class="thead bg-primary text-light">
                                 <tr>
-                                    <th scope="col" colspan="2">Display</th>
+                                    <th scope="col" colSpan="2">Display</th>
 
                                 </tr>
                             </thead>
@@ -306,7 +304,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.display.touch != null ?
                                     <tr>
@@ -316,7 +314,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.display.size != null ?
                                     <tr>
@@ -326,7 +324,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.display.aspectRatio != null ?
                                     <tr>
@@ -336,7 +334,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.display.ppi != null ?
                                     <tr>
@@ -346,7 +344,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.display.screenToBodyRatio != null ?
                                     <tr>
@@ -356,7 +354,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.display.glassType != null ?
                                     <tr>
@@ -366,7 +364,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.display.type != null ?
                                     <tr>
@@ -376,7 +374,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.display.features != null ?
                                     <tr>
@@ -386,7 +384,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.display.notch != null ?
                                     <tr>
@@ -396,7 +394,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -406,7 +404,7 @@ export default function MobileDetails() {
                         <table class="table table-hover table-striped">
                             <thead class="thead bg-primary text-light">
                                 <tr>
-                                    <th scope="col" colspan="2">Memory</th>
+                                    <th scope="col" colSpan="2">Memory</th>
 
                                 </tr>
                             </thead>
@@ -419,7 +417,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.memory.storage != null ?
                                     <tr>
@@ -429,7 +427,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.memory.cardSlot != null ?
                                     <tr>
@@ -439,7 +437,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -449,7 +447,7 @@ export default function MobileDetails() {
                         <table class="table table-hover table-striped">
                             <thead class="thead bg-primary text-light">
                                 <tr>
-                                    <th scope="col" colspan="2">Connectivity</th>
+                                    <th scope="col" colSpan="2">Connectivity</th>
 
                                 </tr>
                             </thead>
@@ -462,7 +460,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.connectivity.edge != null ?
                                     <tr>
@@ -472,7 +470,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.connectivity.threeG != null ?
                                     <tr>
@@ -482,7 +480,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.connectivity.fourG != null ?
                                     <tr>
@@ -492,7 +490,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.connectivity.fiveG != null ?
                                     <tr>
@@ -502,7 +500,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.connectivity.volte != null ?
                                     <tr>
@@ -512,7 +510,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -524,7 +522,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.connectivity.bluetooth != null ?
                                     <tr>
@@ -534,7 +532,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.connectivity.usb != null ?
                                     <tr>
@@ -544,7 +542,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.connectivity.usbFeatures != null ?
                                     <tr>
@@ -554,7 +552,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.connectivity.wirelessCharging != null ?
                                     <tr>
@@ -564,7 +562,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -577,7 +575,7 @@ export default function MobileDetails() {
                         <table class="table table-hover table-striped">
                             <thead class="thead bg-primary text-light">
                                 <tr>
-                                    <th scope="col" colspan="2">Battery</th>
+                                    <th scope="col" colSpan="2">Battery</th>
 
                                 </tr>
                             </thead>
@@ -590,7 +588,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.battery.type != null ?
                                     <tr>
@@ -600,7 +598,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.battery.fastCharging != null ?
                                     <tr>
@@ -610,7 +608,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.battery.reverseCharging != null ?
                                     <tr>
@@ -620,7 +618,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -631,7 +629,7 @@ export default function MobileDetails() {
                         <table class="table table-hover table-striped">
                             <thead class="thead bg-primary text-light">
                                 <tr>
-                                    <th scope="col" colspan="2">Technical</th>
+                                    <th scope="col" colSpan="2">Technical</th>
 
                                 </tr>
                             </thead>
@@ -645,7 +643,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -657,7 +655,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -670,7 +668,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -683,7 +681,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -695,7 +693,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -709,7 +707,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -721,7 +719,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -733,7 +731,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -743,7 +741,7 @@ export default function MobileDetails() {
                         <table class="table table-hover table-striped">
                             <thead class="thead bg-primary text-light">
                                 <tr>
-                                    <th scope="col" colspan="2">Extras</th>
+                                    <th scope="col" colSpan="2">Extras</th>
 
                                 </tr>
                             </thead>
@@ -757,7 +755,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
                                 {mobile.extra.fingerprintSensor != null ?
@@ -768,7 +766,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
                                 {mobile.extra.faceUnlock != null ?
@@ -779,7 +777,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
                                 {mobile.extra.sensors != null ?
@@ -790,7 +788,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
                                 {mobile.extra.threePFivemmHeadphoneJack != null ?
@@ -801,7 +799,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
                                 {mobile.extra.extra != null ?
@@ -812,7 +810,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
                                 {mobile.extra.waterResistance != null ?
@@ -823,7 +821,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
                                 {mobile.extra.ipRating != null ?
@@ -834,7 +832,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
                                 {mobile.extra.dustResistant != null ?
@@ -845,7 +843,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
                                 {mobile.extra.extraFeatures != null ?
@@ -856,7 +854,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 
@@ -867,7 +865,7 @@ export default function MobileDetails() {
                         <table class="table table-hover table-striped">
                             <thead class="thead bg-primary text-light">
                                 <tr>
-                                    <th scope="col" colspan="2">Multimedia</th>
+                                    <th scope="col" colSpan="2">Multimedia</th>
 
                                 </tr>
                             </thead>
@@ -880,7 +878,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.multimedia.music != null ?
                                     <tr>
@@ -890,7 +888,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.multimedia.video != null ?
                                     <tr>
@@ -900,7 +898,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.multimedia.fmRadio != null ?
                                     <tr>
@@ -910,7 +908,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
                                 {mobile.multimedia.documentReader != null ?
                                     <tr>
@@ -920,7 +918,7 @@ export default function MobileDetails() {
                                         </td>
                                     </tr>
                                     :
-                                    <></>
+                                    <div></div>
                                 }
 
 

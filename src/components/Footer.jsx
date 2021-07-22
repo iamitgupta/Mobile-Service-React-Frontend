@@ -11,20 +11,7 @@ export default function Footer() {
 
 
   return (
-    <>
-
-      {/* <div class="fixed-bottom">
-
-      <footer class="container-fluid  text-center bg-primary mb-0">
-  <p>Mobiles♥ <a href="https://www.mobileslove.com">MobilesLove</a></p> 
-</footer>
-
-
-      </div> */}
-
-
-
-
-    </>
+  <div>
+    </div>
   );
 }
