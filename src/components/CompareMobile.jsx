@@ -24,7 +24,10 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
                     <div className="col-sm">
                         <table class="table">
                             <thead class="thead bg-primary text-light  ">
-                                <tr>
+                               
+                                <tr >
+                                    <td></td>
+                               
 
                                     {mobileOne && (
                                         <td>
@@ -62,6 +65,7 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
                             </thead>
                             <tbody >
                                 <tr>
+                                <td></td>
 
                                     {mobileOne && (
                                         <td>
@@ -109,7 +113,7 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
                         <table class="table table-hover table-striped table-striped">
                             <tbody>
                                 <tr class="table-primary">
-                                    <th scope="col" colspan={size + 1}>Overall</th>
+                                    <th scope="col" colSpan={size + 1}>Overall</th>
 
                                 </tr>
                                 {/* rank */}
@@ -169,7 +173,7 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
                                 </tr>
                                 {/* general */}
                                 <tr class="table-primary">
-                                    <th scope="col" colspan={size + 1}>General</th>
+                                    <th scope="col" colSpan={size + 1}>General</th>
 
                                 </tr>
 
@@ -410,7 +414,7 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
 
                                  {/* Camera */}
                                  <tr class="table-primary">
-                                    <th scope="col" colspan={size + 1}>Camera</th>
+                                    <th scope="col" colSpan={size + 1}>Camera</th>
 
                                 </tr>
 
@@ -698,7 +702,7 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
 
                                  {/* Didplay */}
                                  <tr class="table-primary">
-                                    <th scope="col" colspan={size + 1}>Display</th>
+                                    <th scope="col" colSpan={size + 1}>Display</th>
 
                                 </tr>
 
@@ -1174,7 +1178,7 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
 
                                 {/* Memory */}
                                 <tr class="table-primary">
-                                    <th scope="col" colspan={size + 1}>Memory</th>
+                                    <th scope="col" colSpan={size + 1}>Memory</th>
 
                                 </tr>
                                 {/* ram*/}
@@ -1321,7 +1325,7 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
 
                                 {/* Connectivity */}
                                 <tr class="table-primary">
-                                    <th scope="col" colspan={size + 1}>Connectivity</th>
+                                    <th scope="col" colSpan={size + 1}>Connectivity</th>
 
                                 </tr>
                                 {/* GPRS*/}
@@ -1852,7 +1856,7 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
 
                                 {/* Battery */}
                                 <tr class="table-primary">
-                                    <th scope="col" colspan={size + 1}>Battery</th>
+                                    <th scope="col" colSpan={size + 1}>Battery</th>
 
                                 </tr>
                                 {/* battery size*/}
@@ -2048,7 +2052,7 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
 
                                  {/* Technical */}
                                  <tr class="table-primary">
-                                    <th scope="col" colspan={size + 1}>Technical</th>
+                                    <th scope="col" colSpan={size + 1}>Technical</th>
 
                                 </tr>
                                 {/* OS */}
@@ -2429,7 +2433,7 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
 
                                  {/* Extras */}
                                  <tr class="table-primary">
-                                    <th scope="col" colspan={size + 1}>Extras</th>
+                                    <th scope="col" colSpan={size + 1}>Extras</th>
 
                                 </tr>
 
@@ -2907,7 +2911,7 @@ export default function CompareMobile({ mobileOne, mobileTwo, mobileThree, size 
                                 
                                  {/* Multimedia */}
                                  <tr class="table-primary">
-                                    <th scope="col" colspan={size + 1}>Multimedia</th>
+                                    <th scope="col" colSpan={size + 1}>Multimedia</th>
 
                                 </tr>
 
