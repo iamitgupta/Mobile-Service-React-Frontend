@@ -22,7 +22,7 @@ export default function SortBy({ setSortML }) {
             <select class="btn btn-light float-end mb-1"  value={sortTemp} onChange={sortChangeTemp} >
                 <option name="sort">Sort By</option>
                 <option name="sort">Price Low to High</option>
-                <option name="sort">Price Hight to Low</option>
+                <option name="sort">Price High to Low</option>
                 <option name="sort">Newest First</option>
                 <option name="sort">SpecScore Low to High</option>
                 <option name="sort">SpecScore High to Low</option>
