@@ -25,7 +25,7 @@ export default function Footer() {
           <h4>Our Services</h4>
           <ul class="list-unstyled">
             <li><a href="#"></a></li>
-            <li><a href="#">All Mobiles</a></li>
+            <li><a href="/../mobiles">All Mobiles</a></li>
             <li><a href="#">Audio devices</a></li>
             <li><a href="#">Offers</a></li>
             <li><a href="#">Coupons</a></li>

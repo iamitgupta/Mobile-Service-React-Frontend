@@ -44,8 +44,8 @@ export default function Header() {
           <div class="container-fluid">
             {/* <a class="navbar-brand" href="#">Navbar</a> */}
           
-            <Link to="/"><img src="https://i.ibb.co/D7m0MRX/logo2.png" width="100px" height="40px" alt="logo"></img></Link>
-            {/* <Link to="/"><h6 class="text-light">Mobiles❤</h6></Link> */}
+            {/* <Link to="/"><img src="https://i.ibb.co/D7m0MRX/logo2.png" width="100px" height="40px" alt="logo"></img></Link> */}
+            <Link to="/"><h6 class="text-light">Mobiles❤</h6></Link>
 
             <form class="d-flex w-75">
               <SearchBar class="form-control border border-right-0" />
