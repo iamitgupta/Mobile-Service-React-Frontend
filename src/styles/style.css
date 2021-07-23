@@ -143,4 +143,11 @@ footer {
     -ms-transition: all 0.2s;
     transition: all 0.2s;
   }
+
+  .image-details-img{
+     height: 300px;
+    padding: 10px;
+  }
+
+  
   

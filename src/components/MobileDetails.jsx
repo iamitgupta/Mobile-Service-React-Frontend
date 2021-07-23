@@ -75,13 +75,16 @@ export default function MobileDetails() {
                                     <Carousel slide={false}>
                                         {mobile.images.map((img => {
                                             return (
-                                                <Carousel.Item interval={2000}>
-                                                    <img
-                                                        className="d-block w-100"
-                                                        src={img}
-                                                        alt="First slide"
-                                                        height="230px"
-                                                    />
+                                                <Carousel.Item interval={5000}>
+
+
+                                                    <div class="image-details-img" >
+                                                        <img
+                                                            src={img}
+                                                            alt="slide"
+                                                        />
+
+                                                    </div>
 
                                                 </Carousel.Item>
                                             );
