@@ -10,7 +10,7 @@ import { Spinner } from 'react-bootstrap';
 
 const PopularMobiles = () => {
 
-    console.warn("====Pop====");
+   
 
 
     const [mobiles, setMobiles] = useState([]);
@@ -41,19 +41,19 @@ const PopularMobiles = () => {
         console.warn("====getMobiles====");
         try {
             const query = `mobileservice?sort=popularity&size=10`;
-            console.warn("Query : " + query);
+            // console.warn("Query : " + query);
             const response = await api.get(query);
 
             setMobiles(response.data);
-            console.log("Mobiles api call : " + response.data);
+            // console.log("Mobiles api call : " + response.data);
 
         } catch (error) {
             console.error(error);
         }
 
     }
-    console.warn("Rendering....");
-    console.warn(mobiles);
+    // console.warn("Rendering....");
+    // console.warn(mobiles);
 
 
 

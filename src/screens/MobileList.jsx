@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import Mobile from './Mobile';
+import Mobile from '../components/Mobile';
 import queryString from 'query-string';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import api from '../services/api';
 import { Row, Col, Spinner, Toast } from 'react-bootstrap';
-import SortBy from './SortBy';
+import SortBy from '../components/SortBy';
 import { FilterFilled } from '@ant-design/icons';
-import Filter from './Filter'
+import Filter from '../components/Filter'
 
-import CompareModal from './CompareModal'
+import CompareModal from '../components/CompareModal'
 
 
 

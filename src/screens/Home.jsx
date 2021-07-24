@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { Route } from 'react-router';
 
-import MobileList from '../components/MobileList';
-import MobileSmall from '../components/MobileSmall';
+import MobileList from '../screens/MobileList';
 import PopularBrands from '../components/PopularBrands';
 import PopularMobiles from '../components/PopularMobiles';
 import UpcomingMobiles from '../components/UpcomingMobiles';
