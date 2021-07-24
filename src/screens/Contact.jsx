@@ -3,7 +3,7 @@ import React from 'react'
 
 
 const Contact = () => {
-
+  window.scrollTo(0, 0);
 
   return (
     <div class="container contact p-4 card">
