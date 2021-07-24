@@ -56,7 +56,7 @@ const SearchBar = () => {
     } else {
       //on other page only a step ahead eg.. http://localhost:3000/mobile/ or http://localhost:3000/deals/
       // so it back to http://localhost:3000/ then forward to http://localhost:3000//mobiles?search=
-      history.push("/../mobiles?" + params.toString())
+      history.push("/mobiles?" + params.toString())
     }
 
   }

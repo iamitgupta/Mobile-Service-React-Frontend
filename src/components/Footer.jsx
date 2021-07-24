@@ -1,8 +1,7 @@
 import { FacebookFilled, InstagramFilled } from '@ant-design/icons';
-import React, { useEffect, useState } from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import SearchBar from './SearchBox';
+import React from 'react';
+import { Link} from 'react-router-dom';
+
 
 
 
@@ -25,7 +24,7 @@ export default function Footer() {
           <h4>Our Services</h4>
           <ul class="list-unstyled">
             <li><Link to="#"></Link></li>
-            <li><Link to="/../mobiles">All Mobiles</Link></li>
+            <li><Link to={`/mobiles`}>All Mobiles</Link></li>
             <li><Link to="#">Audio devices</Link></li>
             <li><Link to="#">Offers</Link></li>
             <li><Link to="#">Coupons</Link></li>
@@ -38,12 +37,12 @@ export default function Footer() {
         <div class="footer-pad">
           <h4>Mobileslove</h4>
           <ul class="list-unstyled">
-            <li><Link to="/about">About us</Link></li>
-            <li><Link to="/contact">Contact us</Link></li>
+            <li><Link to={`/about`}>About us</Link></li>
+            <li><Link to={"/contact"}>Contact us</Link></li>
             <li><Link to="#">Disclaimer</Link></li>
-            <li><Link to="/privacy">Privacy Policy</Link></li>
+            <li><Link to={"/privacy"}>Privacy Policy</Link></li>
             <li><Link to="#">FAQs</Link></li>
-            <li><Link to="/teams">Our Teams</Link></li>
+            <li><Link to={"/teams"}>Our Teams</Link></li>
             <li><Link to="#">Career</Link></li>
           </ul>
         </div>
@@ -67,6 +66,7 @@ export default function Footer() {
   </div>
   </div>
 </footer>
+
   
 </div>
 

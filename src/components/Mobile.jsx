@@ -9,9 +9,6 @@ import CameraFrontIcon from '@material-ui/icons/CameraFront';
 
 export default function Mobile({ mobile, mobileIdManager }) {
 
-    
-
-
     return (
   
 
