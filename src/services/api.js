@@ -8,4 +8,3 @@ export default axios.create({
   }
 });
 
-console.warn(process.env);
